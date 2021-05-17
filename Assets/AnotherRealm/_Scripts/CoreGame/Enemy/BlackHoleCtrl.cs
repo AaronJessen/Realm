@@ -34,7 +34,7 @@ namespace ARExplorer
                 Transform t = g.transform;
                 t.SetParent(ParTrans);
                 t.localScale = Vector3.one;
-                t.localPosition = new Vector3(Random.Range(-10, 10), 0, Random.Range(100, 105));
+                t.localPosition = new Vector3(Random.Range(-10, 10), 0, Random.Range(50, 55));
                 BlackHoleList.Add(g);
             }
         }

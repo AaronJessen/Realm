@@ -13,33 +13,48 @@ namespace ARExplorer
         //public List<MonsterBase> monsterBaseList = new List<MonsterBase>>();
         public List<List<int>> monsterCount = new List<List<int>>();
 
+        int remainMonsterCount = 0;
 
+        public delegate void LoadLevelEventHandle(LevelBuilder l);
+        public static event LoadLevelEventHandle LoadLevelEvent;
 
         // Start is called before the first frame update
         void Start()
         {
-            LoadLevel(1);
-          //  PopUpCtrl.Instance.ShowPopUpWindow("Good", true);
-           // PopUpCtrl.Instance.ShowPopUpWindow("GOod", true);
+            LoadLevel(MapPanelView.curLevel);
+            MonsterBase.MonsterDieEvent += MonsterDie;
+            Debug.Log("MapPanelView.curLevel " + MapPanelView.curLevel);
+        }
+
+        private void OnDestroy()
+        {
+            MonsterBase.MonsterDieEvent -= MonsterDie;
         }
 
         // Update is called once per frame
-        void Update()
+        void MonsterDie()
    	 	{
-   	  	   
-   	 	}
+            remainMonsterCount--;
+            Debug.Log("MonsterDie");
+            if(remainMonsterCount == 0)
+            {
+                PopUpCtrl.Instance.ShowPopUpWindow("You Win", true);
+            }
+
+       }
 
         //int total
         public void LoadLevel(int level)
         {
             string path = "Levels/Level" + level.ToString();
-            //transform.localPosition = new Vector3(0, 0, 0);
+
             levelBuilder = Resources.Load<LevelBuilder>(path);
-            //Debug.Log("levelBuilder " + levelBuilder.EnemySpawnList[0].MonsterList[0].total);
+
+            LoadLevelEvent.Invoke(levelBuilder);
             blackHoleCtrlScr.InitFactory(levelBuilder.EnemySpawnList.Count);
             monsterCount.Clear();
             monsterBaseList.Clear();
-            Vector3 spawnOffest = new Vector3();
+            remainMonsterCount = 0;
             for (int i = 0; i < levelBuilder.EnemySpawnList.Count; i++)
             {
                 monsterBaseList.Add(new List<MonsterBase>());
@@ -47,21 +62,19 @@ namespace ARExplorer
                 for (int j = 0; j < levelBuilder.EnemySpawnList[i].MonsterList.Count; j++)
                 {
                     monsterCount[i].Add(0);
-                    for (int k = 0; k < levelBuilder.EnemySpawnList[i].MonsterList[j].total; k++)
+                    for (int k = 0; k < levelBuilder.EnemySpawnList[i].MonsterList[j].number; k++)
                     {
                        // spawnOffest = new Vector3(Random.Range(-20, 20), 0, 0);
                         MonsterBase tem = Instantiate<MonsterBase>(levelBuilder.EnemySpawnList[i].MonsterList[j].Monster, blackHoleCtrlScr.BlackHoleList[i].transform);
-                        //MonsterBase tem = Instantiate<MonsterBase>(levelBuilder.EnemySpawnList[i].MonsterList[j].Monster, transform);
-                       // tem.transform.position += spawnOffest;
                         tem.Create(levelBuilder.EnemySpawnList[i].MonsterList[j].speed);
-
                         monsterBaseList[i].Add(tem);
-
-
                     }
-                }
-            }
 
+                }
+                remainMonsterCount += monsterBaseList[i].Count;
+            }
+            
+            Debug.Log("remainMonsterCount " + remainMonsterCount);
             StartCoroutine(SpawRelease());
         }
 

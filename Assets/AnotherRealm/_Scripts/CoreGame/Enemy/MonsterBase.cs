@@ -15,6 +15,10 @@ namespace ARExplorer
         Animator m_Animator;
         
         MonsterState m_MonsterState;
+
+        public delegate void MonsterDieEventHandle();
+        public static event MonsterDieEventHandle MonsterDieEvent;
+
         // Start is called before the first frame update
         void Awake()
         {
@@ -52,6 +56,8 @@ namespace ARExplorer
 
             transform.LookAt(Camera.main.transform.position, Vector3.up);
             transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
+            //transform.localRotation = Quaternion.Slerp(transform.localRotation, Quaternion.LookRotation(movement), 10 * Time.deltaTime);
+
             if (m_MonsterState == MonsterState.Move)
             {
                 
@@ -93,13 +99,14 @@ namespace ARExplorer
         private void OnTriggerStay(Collider collision)
         {
             //collision.gameObject.GetComponent<CrystleCtrl>()
-            if (collision.tag == "SpotLightCollider")
+            //if (collision.tag == "SpotLightCollider")
+            //{
+            //    GetDamage("Take Damage");
+            //    Debug.Log("OnTriggerEnter " + collision.gameObject.name);
+            //}
+            if (collision.tag == "Player")
             {
-                GetDamage("Take Damage");
-                Debug.Log("OnTriggerEnter " + collision.gameObject.name);
-            }
-            else if (collision.tag == "Player")
-            {
+                m_MonsterState = MonsterState.Attack;
                 //m_MonsterState = MonsterState.Attack;
                 MoveForward("Fly Forward", false);
                 Attack("Melee Attack");
@@ -109,10 +116,16 @@ namespace ARExplorer
 
         private void OnTriggerEnter(Collider collision)
         {
-            
+            if (collision.tag == "Bullet")
+            {
+                GetDamage("Take Damage");
+                SimplePool.Despawn(collision.gameObject);
+                Debug.Log("OnTriggerEnter Bullet " + collision.gameObject.name);
+            }
             if (collision.tag == "SpotLightCollider")
             {
                 GetDamage("Take Damage");
+                SimplePool.Despawn(collision.gameObject);
                 Debug.Log("OnTriggerEnter " + collision.gameObject.name);
             }
             else if (collision.tag == "Player")
@@ -132,6 +145,8 @@ namespace ARExplorer
         {
             m_Animator.SetTrigger(key);
         }
+
+
         public virtual void GetDamage(string key)
         {
             if(m_MonsterState == MonsterState.Die)
@@ -140,8 +155,8 @@ namespace ARExplorer
             }
 
             //gameObject.SetActive(false);
-
-            enemyHealthBarScr.UpdateHealthBar(0.01f);
+            Debug.Log("GetDamage");
+            enemyHealthBarScr.UpdateHealthBar(1f);
             if (enemyHealthBarScr.CurHealth <= 0)
             {
                 m_MonsterState = MonsterState.Die;
@@ -151,12 +166,34 @@ namespace ARExplorer
             {
                 m_MonsterState = MonsterState.GetDamage;
                 m_Animator.SetTrigger(key);
+
+                StartCoroutine(MonsterGetHitIE());
             }
 
 
         }
+
+        private IEnumerator MonsterGetHitIE()
+        {
+            yield return new WaitForSeconds(0.5f);
+            transform.localScale = Vector3.zero;
+            yield return new WaitForSeconds(2f);
+            transform.localPosition = new Vector3(Random.Range(transform.localPosition.x - 10, transform.localPosition.x + 10), transform.localPosition.y, transform.localPosition.z);
+            //gameObject.SetActive(true);
+            transform.localScale = Vector3.one;
+            m_MonsterState = MonsterState.Move;
+        }
+
+
+        public void GetDamageFinsih()
+        {
+
+        }
+
+
         public virtual void Die(string key)
         {
+            MonsterDieEvent?.Invoke();
             m_Animator.SetTrigger(key);
         }
         AnimationClip clip;

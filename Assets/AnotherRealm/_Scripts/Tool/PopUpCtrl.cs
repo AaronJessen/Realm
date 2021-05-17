@@ -73,7 +73,7 @@ namespace ARExplorer
         public void CloseErrorPopUpWindow()
         {
             popupParentPanel.SetActive(false);
-            messagePopUpViewScr.CloseErrorWindow();
+            messagePopUpViewScr.ExitWindow();
         }
 
         public void LoadingWindowToggle(bool toggle)

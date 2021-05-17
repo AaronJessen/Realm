@@ -20,5 +20,12 @@ public class LoadScene : MonoBehaviour
     public static void JumpToScene(int index)
     {
         SceneManager.LoadSceneAsync(index);
+        
+    }
+
+    public static void JumpToNextLevel(int index)
+    {
+        SceneManager.LoadSceneAsync(index);
+
     }
 }

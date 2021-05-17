@@ -41,7 +41,9 @@ namespace ARExplorer
         {
             m_RaycastManager = GetComponent<ARRaycastManager>();
             placementIndicator = FindObjectOfType<PlacementIndicator>();
-            //CreateLevel();
+#if UNITY_EDITOR
+            CreateLevel();
+#endif
         }
 
         bool TryGetTouchPosition(out Vector2 touchPosition)

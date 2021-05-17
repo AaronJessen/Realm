@@ -32,6 +32,11 @@ namespace ARExplorer
             
         }
 
+        private void OnDestroy()
+        {
+            CrystleCtrl.HitCrystalEvent -= TakeDamage;
+            PlayerCharacterController.HitPlayerEvent -= TakeDamage;
+        }
         //private void UpdateHealthBar(int damgage, )
         //{
         //    m_PlayerHealth.currentHealth = m_PlayerHealth.currentHealth - 1;

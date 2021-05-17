@@ -18,7 +18,10 @@ namespace ARExplorer
         Image resultImage;
 
         [SerializeField]
-        Button ExitErrorMessageWindowBtn;
+        Button ExitMessageWindowBtn;
+
+        [SerializeField]
+        Button NextLevelBtn;
 
         [SerializeField]
         LoadingHelper loadingHelperScr;
@@ -36,7 +39,8 @@ namespace ARExplorer
         // Start is called before the first frame update
         void Start()
         {
-            ExitErrorMessageWindowBtn.onClick.AddListener(CloseErrorWindow);
+            ExitMessageWindowBtn.onClick.AddListener(ExitWindow);
+            NextLevelBtn.onClick.AddListener(NextLevel);
         }
 
         private void Awake()
@@ -50,12 +54,16 @@ namespace ARExplorer
             
 		}
 
+
         public void ShowMessage(string msg, bool success = true)
         {
             mainMessageText.text = msg;
             selfImage.enabled = true;
+            //ExitMessageWindowBtn.gameObject.SetActive(false);
+            NextLevelBtn.gameObject.SetActive(false);
             if (success)
             {
+                NextLevelBtn.gameObject.SetActive(true);
                 titleMessageText.text = "Success";
                 additionalMessageText.gameObject.SetActive(false);
                 resultImage.gameObject.SetActive(false);
@@ -72,12 +80,24 @@ namespace ARExplorer
             gameObject.SetActive(true);
         }
 
-        public void CloseErrorWindow()
+        public void ExitWindow()
         {
             selfImage.enabled = true;
             messagePanel.SetActive(false);
             gameObject.SetActive(false);
-           // ARScaningPopupWindowScr.gameObject.SetActive(false);
+            LoadScene.JumpToScene(0);
+            // ARScaningPopupWindowScr.gameObject.SetActive(false);
+        }
+
+        private void NextLevel()
+        {
+            selfImage.enabled = true;
+            messagePanel.SetActive(false);
+            gameObject.SetActive(false);
+
+            MapPanelView.curLevel += 1;
+            FindObjectOfType<LevelCtrl>().LoadLevel(MapPanelView.curLevel);
+            //LoadScene.JumpToNextLevel(1);
         }
 
         public void ShowLoadingPanelToggle(bool toggle)

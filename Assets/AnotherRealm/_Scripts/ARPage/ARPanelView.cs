@@ -9,18 +9,23 @@ namespace ARExplorer
     {
         [SerializeField]
         private Button ExitButton;
-
+        [SerializeField] Text levelText;
         // Start is called before the first frame update
         void Awake()
         {
             ExitButton.onClick.AddListener(ExitToHome);
+            LevelCtrl.LoadLevelEvent += InitiARPanel;
 
         }
 
-        // Update is called once per frame
-        void Update()
+        private void OnDestroy()
         {
-
+            LevelCtrl.LoadLevelEvent -= InitiARPanel;
+        }
+        // Update is called once per frame
+        void InitiARPanel(LevelBuilder selectedLevel)
+        {
+            levelText.text = selectedLevel.levelName;
         }
 
         public void ExitToHome()

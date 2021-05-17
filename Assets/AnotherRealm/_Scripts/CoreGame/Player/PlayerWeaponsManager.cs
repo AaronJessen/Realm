@@ -9,6 +9,8 @@ namespace ARExplorer
 	{
 		[SerializeField]
 		Transform gunPoint;
+		[SerializeField]
+		Transform bulletPoolPar;
 
 		[SerializeField]
 		GameObject bulletPrefab;
@@ -16,7 +18,7 @@ namespace ARExplorer
 
 		//[SerializeField]
 		GameObject SpotLight;
-		public Image batteryFillImage;
+		//public Image batteryFillImage;
 		List<ProjectileBase> bulletList = new List<ProjectileBase>();
 		int batteryTotal;
 		public int BatteryTotal
@@ -39,25 +41,33 @@ namespace ARExplorer
 			CurBattery = 10;
 			BatteryTotal = 10;
 			SpotLightToggle(false);
+            SpotLightCtrl.ShotToggleEvent += Shot;
 		}
 
-	
-		// Update is called once per frame
-		void Update()
+
+        private void OnDestroy()
+        {
+			SpotLightCtrl.ShotToggleEvent -= Shot;
+		}
+
+        // Update is called once per frame
+        void Update()
    	 	{
    	  	   
    	 	}
 
-		public void Shot()
+		public void Shot(bool t)
         {
 			GameObject tem = SimplePool.Spawn(bulletPrefab, Vector3.zero, Quaternion.identity);
 			MyDebug.Log("Shotting");
 			//GameObject tem = Instantiate(bulletPrefab, Vector3.zero, Quaternion.identity, gunPoint);
-			tem.transform.SetParent(gunPoint);
+			bulletPoolPar.position = gunPoint.position;
+			bulletPoolPar.rotation = gunPoint.rotation;
+			tem.transform.SetParent(bulletPoolPar);
 			bulletList.Add(tem.GetComponent<ProjectileBase>());
 			tem.transform.localPosition = Vector3.zero;
 			tem.transform.localEulerAngles = Vector3.zero;
-			tem.transform.localScale = Vector3.one;
+			//tem.transform.localScale = Vector3.one;
 			bulletList[bulletList.Count - 1].Shoot();
 
 		}

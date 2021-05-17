@@ -22,7 +22,10 @@ namespace ARExplorer
             visual.SetActive(false);
             PlaceOnPlane.OnPlacePlaneEvent += PlaceARObject;
         }
-
+        private void OnDestroy()
+        {
+            PlaceOnPlane.OnPlacePlaneEvent -= PlaceARObject;
+        }
         void Update()
         {
             //visual.SetActive(false);

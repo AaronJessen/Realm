@@ -450,6 +450,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: HealthBar (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2590693701850638238, guid: 9d0ddebf8f19e480588ca14b2d46fcf6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3865925413660061718, guid: 9d0ddebf8f19e480588ca14b2d46fcf6,
         type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -925,6 +930,10 @@ PrefabInstance:
     - target: {fileID: 114048, guid: e3fa26c4150474d4f9b9187d8c026e16, type: 3}
       propertyPath: m_Name
       value: TigerDrago Black
+      objectReference: {fileID: 0}
+    - target: {fileID: 114048, guid: e3fa26c4150474d4f9b9187d8c026e16, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 406204, guid: e3fa26c4150474d4f9b9187d8c026e16, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

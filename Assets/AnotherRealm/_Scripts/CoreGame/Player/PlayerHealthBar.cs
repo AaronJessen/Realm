@@ -13,7 +13,7 @@ namespace ARExplorer
 
         Health m_PlayerHealth;
 
-
+        [SerializeField] GameObject playerGetHitEffect;
         PlayerCharacterController playerCharacterController;
         private void Start()
         {
@@ -39,13 +39,21 @@ namespace ARExplorer
             m_PlayerHealth.currentHealth = m_PlayerHealth.currentHealth - damage;
             if (m_PlayerHealth.currentHealth <= 0f)
             {
-                PopUpCtrl.Instance.ShowPopUpWindow("You Lost", true);
+                PopUpCtrl.Instance.ShowPopUpWindow("You Lost", false);
                 healthFillImage.fillAmount = 0;
             }
             else
             {
                 healthFillImage.fillAmount = m_PlayerHealth.currentHealth / m_PlayerHealth.maxHealth;
+                StartCoroutine(HitEffectIE());
             }
+        }
+
+        private IEnumerator HitEffectIE()
+        {
+            playerGetHitEffect.gameObject.SetActive(true);
+            yield return new WaitForSeconds(1f);
+            playerGetHitEffect.gameObject.SetActive(false);
         }
 
         public void UpdateBattertBar(int consume)

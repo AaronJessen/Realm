@@ -11,7 +11,7 @@ namespace ARExplorer
         //[Tooltip("Reference to the main camera used for the player")]
         //public Camera playerCamera;
         [Tooltip("Audio source for footsteps, jump, etc...")]
-        public AudioSource audioSource;
+        AudioSource audioSource;
 
         [Header("General")]
         [Tooltip("Force applied downward when in the air")]
@@ -144,6 +144,11 @@ namespace ARExplorer
             SpotLightCtrl.ShotToggleEvent += ShotToggle;
 
             //PlayerHealthBar
+        }
+
+        private void OnDestroy()
+        {
+            SpotLightCtrl.ShotToggleEvent -= ShotToggle;
         }
 
         private void OnTriggerEnter(Collider other)

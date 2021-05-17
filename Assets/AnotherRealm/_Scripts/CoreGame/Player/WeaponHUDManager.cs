@@ -1,5 +1,8 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
+using UnityEngine.EventSystems;
 
 public class WeaponHUDManager : MonoBehaviour
 {
@@ -8,11 +11,18 @@ public class WeaponHUDManager : MonoBehaviour
     [Tooltip("Prefab for displaying weapon ammo")]
     public GameObject ammoCounterPrefab;
 
+    [SerializeField] Button baseShotBtn;
+
+    public delegate void BaseShotToggleEventHandler();
+    public static event BaseShotToggleEventHandler BaseShotToggleEvent;
+
     //PlayerWeaponsManager m_PlayerWeaponsManager;
     //List<AmmoCounter> m_AmmoCounters = new List<AmmoCounter>();
 
     void Start()
     {
+        //baseShotBtn.onClick.AddListener(OrdinaryShow);
+        //baseShotBtn.onpo
         //m_PlayerWeaponsManager = FindObjectOfType<PlayerWeaponsManager>();
         //DebugUtility.HandleErrorIfNullFindObject<PlayerWeaponsManager, WeaponHUDManager>(m_PlayerWeaponsManager, this);
 
@@ -26,6 +36,19 @@ public class WeaponHUDManager : MonoBehaviour
         //m_PlayerWeaponsManager.onAddedWeapon += AddWeapon;
         //m_PlayerWeaponsManager.onRemovedWeapon += RemoveWeapon;
         //m_PlayerWeaponsManager.onSwitchedToWeapon += ChangeWeapon;
+    }
+    //void OnMouseDown()
+    //{
+    //    Debug.Log("OnMouseDown");
+    //}
+
+    //public void OnPointerDown(PointerEventData data)
+    //{
+    //    Debug.Log("OnPointerDown");
+    //}
+    private void OrdinaryShow()
+    {
+        BaseShotToggleEvent?.Invoke();
     }
 
     //void AddWeapon(WeaponController newWeapon, int weaponIndex)

@@ -9,6 +9,9 @@ namespace ARExplorer
 
 	public class LevelBuilder : ScriptableObject
 	{
+        public int totalNumber;
+        public string levelName;
+
         [SerializeField]
         public List<EnemySpawn> EnemySpawnList;
 
@@ -29,14 +32,15 @@ namespace ARExplorer
     [System.Serializable]
     public class EnemySpawn
     {
-        //public BlackHoleCtrl blackHoleCtrlScr;
+
+
         public List<MonsterBaseSpawn> MonsterList;
     }
 
     [System.Serializable]
     public class MonsterBaseSpawn
     {
-        public int total;
+        public int number;
         public float speed;
         [SerializeField]
         public MonsterBase Monster;

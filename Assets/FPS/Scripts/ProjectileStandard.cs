@@ -14,7 +14,7 @@ namespace ARExplorer
         [Tooltip("Transform representing the tip of the projectile (used for accurate collision detection)")]
         public Transform tip;
         [Tooltip("LifeTime of the projectile")]
-        public float maxLifeTime = 5f;
+        public float maxLifeTime = 2f;
         [Tooltip("VFX prefab to spawn upon impact")]
         public GameObject impactVFX;
         [Tooltip("LifeTime of the VFX before being destroyed")]
@@ -28,7 +28,7 @@ namespace ARExplorer
 
         [Header("Movement")]
         [Tooltip("Speed of the projectile")]
-        public float speed = 20f;
+        public float speed = 50f;
         [Tooltip("Downward acceleration from gravity")]
         public float gravityDownAcceleration = 0f;
         [Tooltip("Distance over which the projectile will correct its course to fit the intended trajectory (used to drift projectiles towards center of screen in First Person view). At values under 0, there is no correction")]
@@ -65,8 +65,13 @@ namespace ARExplorer
             m_ProjectileBase.onShoot += OnShoot;
             // OnShoot();
 
-            Invoke("HideAfterTime", 5);
+            Invoke("HideAfterTime", maxLifeTime);
             //Destroy(gameObject, maxLifeTime);
+        }
+
+        private void OnDisable()
+        {
+            CancelInvoke();
         }
 
         private void HideAfterTime()

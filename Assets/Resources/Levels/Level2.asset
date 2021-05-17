@@ -12,22 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee3efbee5f2ce40d19e0cc45c3aa80cf, type: 3}
   m_Name: Level2
   m_EditorClassIdentifier: 
+  totalNumber: 0
+  levelName: Explorer
   EnemySpawnList:
   - MonsterList:
-    - total: 10
+    - number: 1
       speed: 2
-      Monster: {fileID: -4339456039380784831, guid: aa130215be1914250bb79aede224089e,
-        type: 3}
-    - total: 2
-      speed: 2
-      Monster: {fileID: 8639875894411595338, guid: 54bfc8616ac09482e9b3318b911c8451,
-        type: 3}
-  - MonsterList:
-    - total: 3
-      speed: 3
       Monster: {fileID: 4644074475067808252, guid: 79dce4b0e41714a11871339441121d55,
-        type: 3}
-    - total: 4
-      speed: 3
-      Monster: {fileID: -5644184544142274339, guid: 80cb9988e59b3448095cceace75604b6,
         type: 3}
