@@ -42,6 +42,7 @@ namespace ARExplorer
             transform.localPosition = new Vector3(Random.Range(-50, 50), 0, 0);
             ShowToggle(false);
             enemyHealthBarScr.SetupHealthBar(10);
+            GameManager.Instance.ChangeMat(0);
            // gameObject.SetActive(true);
             Debug.Log("Create base" + gameObject.name);
 
