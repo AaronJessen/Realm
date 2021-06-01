@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Vuforia;
+//using Vuforia;
 namespace ARExplorer
 {
     public class ARPanelView : MonoBehaviour
@@ -30,7 +30,7 @@ namespace ARExplorer
 
         public void ExitToHome()
         {
-            GameManager.Instance.VuforiaToggle(false);
+           // GameManager.Instance.VuforiaToggle(false);
             LoadScene.JumpToScene(0);
         }
     }

@@ -28,7 +28,7 @@ GameObject:
   - component: {fileID: 6950773044070002472}
   m_Layer: 0
   m_Name: Monster3
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -131,6 +131,10 @@ PrefabInstance:
     - target: {fileID: 100166, guid: ab615728c2ce54468bd9f3b8037f0c06, type: 3}
       propertyPath: m_Name
       value: Lich-Cyan
+      objectReference: {fileID: 0}
+    - target: {fileID: 100166, guid: ab615728c2ce54468bd9f3b8037f0c06, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 400166, guid: ab615728c2ce54468bd9f3b8037f0c06, type: 3}
       propertyPath: m_LocalPosition.x

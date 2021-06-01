@@ -40,7 +40,7 @@ namespace ARExplorer
         void EnterLevelMode(int level)
         {
             curLevel = level;
-            GameManager.Instance.VuforiaToggle(true);
+           // GameManager.Instance.VuforiaToggle(true);
             LoadScene.JumpToScene(1);
         }
 

@@ -12,6 +12,7 @@ public class WeaponHUDManager : MonoBehaviour
     public GameObject ammoCounterPrefab;
 
     [SerializeField] Button baseShotBtn;
+    [SerializeField] Button skillShot1Btn;
 
     public delegate void BaseShotToggleEventHandler();
     public static event BaseShotToggleEventHandler BaseShotToggleEvent;

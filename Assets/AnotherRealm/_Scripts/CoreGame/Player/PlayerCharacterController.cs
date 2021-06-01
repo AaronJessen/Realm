@@ -141,14 +141,14 @@ namespace ARExplorer
         void Start()
         {
             //shotBtn.onClick.AddListener(ShotToggle);
-            SpotLightCtrl.ShotToggleEvent += ShotToggle;
+            //SpotLightCtrl.ShotToggleEvent += ShotToggle;
 
             //PlayerHealthBar
         }
 
         private void OnDestroy()
         {
-            SpotLightCtrl.ShotToggleEvent -= ShotToggle;
+            //SpotLightCtrl.ShotToggleEvent -= ShotToggle;
         }
 
         private void OnTriggerEnter(Collider other)

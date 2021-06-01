@@ -13,13 +13,13 @@ namespace ARExplorer
 		Transform bulletPoolPar;
 
 		[SerializeField]
-		GameObject bulletPrefab;
+		List<GameObject> bulletPrefabList = new List<GameObject>();
 		[SerializeField]
 
 		//[SerializeField]
 		GameObject SpotLight;
 		//public Image batteryFillImage;
-		List<ProjectileBase> bulletList = new List<ProjectileBase>();
+		List<MagicProjectileScript> bulletList = new List<MagicProjectileScript>();
 		int batteryTotal;
 		public int BatteryTotal
 		{
@@ -56,19 +56,23 @@ namespace ARExplorer
    	  	   
    	 	}
 
-		public void Shot(bool t)
+		public void Shot(int index)
         {
-			GameObject tem = SimplePool.Spawn(bulletPrefab, Vector3.zero, Quaternion.identity);
+			GameObject tem = SimplePool.Spawn(bulletPrefabList[index], Vector3.zero, Quaternion.identity);
 			MyDebug.Log("Shotting");
-			//GameObject tem = Instantiate(bulletPrefab, Vector3.zero, Quaternion.identity, gunPoint);
+
 			bulletPoolPar.position = gunPoint.position;
 			bulletPoolPar.rotation = gunPoint.rotation;
 			tem.transform.SetParent(bulletPoolPar);
-			bulletList.Add(tem.GetComponent<ProjectileBase>());
+			bulletList.Add(tem.GetComponent<MagicProjectileScript>());
 			tem.transform.localPosition = Vector3.zero;
 			tem.transform.localEulerAngles = Vector3.zero;
-			//tem.transform.localScale = Vector3.one;
-			bulletList[bulletList.Count - 1].Shoot();
+			tem.GetComponent<Rigidbody>().velocity = Vector3.zero;
+			tem.GetComponent<Rigidbody>().AddForce(gunPoint.forward * 1000);
+			Debug.Log("tem.transform.forward " + gunPoint.forward);
+			//tem.GetComponent<MagicProjectileScript>().impactNormal = new Vector3(0,1,0);
+
+			//bulletList[bulletList.Count - 1].Shoot();
 
 		}
 

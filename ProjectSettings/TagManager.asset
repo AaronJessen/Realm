@@ -8,6 +8,7 @@ TagManager:
   - MainCanvas
   - Tower
   - SpotLightCollider
+  - Enemy
   layers:
   - Default
   - TransparentFX

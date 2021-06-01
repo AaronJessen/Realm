@@ -11,7 +11,7 @@ namespace ARExplorer
     public class GameManager : MonoBehaviour
     {
         private static GameManager instance;
-        private static Vuforia.VuforiaBehaviour vuforiaBehav;
+       // private static Vuforia.VuforiaBehaviour vuforiaBehav;
         public GameObject World;
         public List<Material> testMarList;
         public BlitPass blitPass;
@@ -87,17 +87,17 @@ namespace ARExplorer
 
         }
 
-        public void VuforiaToggle(bool toggle)
-        {
-            if (!vuforiaBehav)
-            {
-                vuforiaBehav = FindObjectOfType<Vuforia.VuforiaBehaviour>();
-            }
-            if (vuforiaBehav)
-            {
-                vuforiaBehav.enabled = toggle;
-            }
-        }
+        //public void VuforiaToggle(bool toggle)
+        //{
+        //    if (!vuforiaBehav)
+        //    {
+        //        vuforiaBehav = FindObjectOfType<Vuforia.VuforiaBehaviour>();
+        //    }
+        //    if (vuforiaBehav)
+        //    {
+        //        vuforiaBehav.enabled = toggle;
+        //    }
+        //}
 
 
 
