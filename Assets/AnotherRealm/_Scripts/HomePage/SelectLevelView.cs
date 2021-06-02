@@ -9,7 +9,10 @@ namespace ARExplorer
 	{
 
         Button selectLevelBtn;
-        Text levelText;
+        [SerializeField] Text nameText;
+        [SerializeField] Text desText;
+        [SerializeField] Text rewardText;
+        [SerializeField] GameObject blockObject;
         int level;
         public delegate void SelectLevelEventHandler(int level);
         public static SelectLevelEventHandler SelectLevelEvent;
@@ -17,15 +20,30 @@ namespace ARExplorer
         void Awake()
         {
             selectLevelBtn = GetComponent<Button>();
-            levelText = GetComponentInChildren<Text>();
+            //levelText = GetComponentInChildren<Text>();
             selectLevelBtn.onClick.AddListener(SelcetLevel);
 
         }
 
-        public void InitLevelView(int _level)
+        public void InitLevelView(ChapterData chapterData)
         {
-            level = _level;
-            levelText.text = "Level " + level.ToString();
+            level = chapterData.Episodeindex;
+            nameText.text = chapterData.Name;
+            desText.text = chapterData.Description;
+            for (int i = 0; i < chapterData.Reward.Length; i++)
+            {
+                rewardText.text += chapterData.Reward[i].ToString();
+            }
+
+            //Debug.Log(UserProfile.Instance.userData.CurrentEpisodeIndex + " " + chapterData.Episodeindex);
+            if(UserProfile.Instance.userData.CurrentEpisodeIndex >= chapterData.Episodeindex)
+            {
+                blockObject.SetActive(false);
+            }
+            else
+            {
+                blockObject.SetActive(true);
+            }
         }
 
    	 	// Update is called once per frame

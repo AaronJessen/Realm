@@ -1,0 +1,117 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa2468fb6b72445fea68b9b8ed12113e, type: 3}
+  m_Name: Chapter
+  m_EditorClassIdentifier: 
+  SheetName: Assets/QuickSheet/Example/Excel/Chapters.xls
+  WorksheetName: Chapter
+  dataArray:
+  - chpaterindex: 0
+    episodeindex: 0
+    name: Goblin
+    description: 1
+    reward: 010000000200000003000000
+  - chpaterindex: 0
+    episodeindex: 1
+    name: Wolf
+    description: 1
+    reward: 
+  - chpaterindex: 0
+    episodeindex: 2
+    name: Scavanger
+    description: 1
+    reward: 
+  - chpaterindex: 0
+    episodeindex: 3
+    name: Lurker
+    description: 9
+    reward: 
+  - chpaterindex: 0
+    episodeindex: 4
+    name: Sceleton
+    description: 11
+    reward: 
+  - chpaterindex: 0
+    episodeindex: 5
+    name: Ghost
+    description: 13
+    reward: 
+  - chpaterindex: 0
+    episodeindex: 6
+    name: Orc
+    description: 15
+    reward: 
+  - chpaterindex: 0
+    episodeindex: 7
+    name: Hydra
+    description: 17
+    reward: 
+  - chpaterindex: 0
+    episodeindex: 8
+    name: Undead
+    description: 19
+    reward: 
+  - chpaterindex: 0
+    episodeindex: 9
+    name: Dragon
+    description: 21
+    reward: 
+  - chpaterindex: 1
+    episodeindex: 10
+    name: Goblin
+    description: 1
+    reward: 010000000200000003000000
+  - chpaterindex: 1
+    episodeindex: 11
+    name: Wolf
+    description: 1
+    reward: 
+  - chpaterindex: 1
+    episodeindex: 12
+    name: Scavanger
+    description: 1
+    reward: 
+  - chpaterindex: 1
+    episodeindex: 13
+    name: Lurker
+    description: 9
+    reward: 
+  - chpaterindex: 1
+    episodeindex: 14
+    name: Sceleton
+    description: 11
+    reward: 
+  - chpaterindex: 1
+    episodeindex: 15
+    name: Ghost
+    description: 13
+    reward: 
+  - chpaterindex: 1
+    episodeindex: 16
+    name: Orc
+    description: 15
+    reward: 
+  - chpaterindex: 1
+    episodeindex: 17
+    name: Hydra
+    description: 17
+    reward: 
+  - chpaterindex: 1
+    episodeindex: 18
+    name: Undead
+    description: 19
+    reward: 
+  - chpaterindex: 1
+    episodeindex: 19
+    name: Dragon
+    description: 21
+    reward: 

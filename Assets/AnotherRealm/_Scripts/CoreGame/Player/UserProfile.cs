@@ -7,8 +7,9 @@ namespace ARExplorer
 	public class UserProfile : Singleton<UserProfile>
     {
         public UserData userData = new UserData();
-  	  	// Start is called before the first frame update
-  	  	void Start()
+        public SkillData skillData = new SkillData();
+        // Start is called before the first frame update
+        void Start()
         {
             
         }

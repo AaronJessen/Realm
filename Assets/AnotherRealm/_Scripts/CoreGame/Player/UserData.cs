@@ -9,7 +9,10 @@ namespace ARExplorer
         string UserNameTag = "UserName";
         string CurrentEXPTag = "CurrentEXP";
         string LevelTag = "Level";
+        string CurrentChapterIndexTag = "CurrentChapterIndex";
+        string CurrentEpisodeIndexTag = "CurrentEpisodeIndex";
 
+        
         string MobileTag = "Mobile";
         string CodeTag = "Code";
 
@@ -73,5 +76,32 @@ namespace ARExplorer
                 PlayerPrefs.SetInt(LevelTag, value);
             }
         }
+
+        public int CurrentChapterIndex
+        {
+            get
+            {
+                return PlayerPrefs.GetInt(CurrentChapterIndexTag, 0);
+            }
+            set
+            {
+                PlayerPrefs.SetInt(CurrentChapterIndexTag, value);
+            }
+        }
+
+        public int CurrentEpisodeIndex
+        {
+            get
+            {
+                return PlayerPrefs.GetInt(CurrentEpisodeIndexTag, 0);
+            }
+            set
+            {
+                PlayerPrefs.SetInt(CurrentEpisodeIndexTag, value);
+            }
+        }
+
+
+
     }
 }

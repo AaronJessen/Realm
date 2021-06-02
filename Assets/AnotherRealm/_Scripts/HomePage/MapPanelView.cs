@@ -9,16 +9,28 @@ namespace ARExplorer
 
         [SerializeField] SelectLevelView selectLevelViewPrefab;
         [SerializeField] RectTransform levelViewPar;
+        [SerializeField] Chapter allChapter;
         public static int curLevel = 6;
-
+        List<List<ChapterData>> allChapterDataList = new List<List<ChapterData>>();
         List<SelectLevelView> selectLevelViewList = new List<SelectLevelView>();
         // Start is called before the first frame update
         void Awake()
         {
-            for(int i = 0; i < 10; i++)
+            for (int i = 0; i < allChapter.dataArray.Length; i++)
+            {
+                int chapterIndex = allChapter.dataArray[i].Chpaterindex;
+                if (chapterIndex >= allChapterDataList.Count) {
+                    allChapterDataList.Add(new List<ChapterData>());
+                }
+                Debug.Log(allChapterDataList.Count + " : " + chapterIndex);
+                allChapterDataList[chapterIndex].Add(allChapter.dataArray[i]);
+
+
+            }
+            for (int i = 0; i < allChapterDataList[UserProfile.Instance.userData.CurrentChapterIndex].Count; i++)
             {
                 SelectLevelView tem = Instantiate<SelectLevelView>(selectLevelViewPrefab, Vector3.zero, Quaternion.identity, levelViewPar);
-                tem.InitLevelView(i+1);
+                tem.InitLevelView(allChapterDataList[UserProfile.Instance.userData.CurrentChapterIndex][i]);
                 selectLevelViewList.Add(tem);
             }
             SelectLevelView.SelectLevelEvent += EnterLevelMode;
