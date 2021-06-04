@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa2468fb6b72445fea68b9b8ed12113e, type: 3}
+  m_Script: {fileID: 11500000, guid: 2dc3cad9fd9e84b40ba06c175bd2d850, type: 3}
   m_Name: Chapter
   m_EditorClassIdentifier: 
-  SheetName: Assets/QuickSheet/Example/Excel/Chapters.xls
+  SheetName: Assets/Resources/Persistent/PersistentData.xls
   WorksheetName: Chapter
   dataArray:
   - chpaterindex: 0
@@ -24,47 +24,47 @@ MonoBehaviour:
     episodeindex: 1
     name: Wolf
     description: 1
-    reward: 
+    reward: 0100000002000000
   - chpaterindex: 0
     episodeindex: 2
     name: Scavanger
     description: 1
-    reward: 
+    reward: 0100000002000000
   - chpaterindex: 0
     episodeindex: 3
     name: Lurker
     description: 9
-    reward: 
+    reward: 0100000002000000
   - chpaterindex: 0
     episodeindex: 4
     name: Sceleton
     description: 11
-    reward: 
+    reward: 0100000002000000
   - chpaterindex: 0
     episodeindex: 5
     name: Ghost
     description: 13
-    reward: 
+    reward: 0100000002000000
   - chpaterindex: 0
     episodeindex: 6
     name: Orc
     description: 15
-    reward: 
+    reward: 0100000002000000
   - chpaterindex: 0
     episodeindex: 7
     name: Hydra
     description: 17
-    reward: 
+    reward: 0100000002000000
   - chpaterindex: 0
     episodeindex: 8
     name: Undead
     description: 19
-    reward: 
+    reward: 0100000002000000
   - chpaterindex: 0
     episodeindex: 9
     name: Dragon
     description: 21
-    reward: 
+    reward: 0100000002000000
   - chpaterindex: 1
     episodeindex: 10
     name: Goblin
@@ -74,44 +74,44 @@ MonoBehaviour:
     episodeindex: 11
     name: Wolf
     description: 1
-    reward: 
+    reward: 0100000002000000
   - chpaterindex: 1
     episodeindex: 12
     name: Scavanger
     description: 1
-    reward: 
+    reward: 0100000002000000
   - chpaterindex: 1
     episodeindex: 13
     name: Lurker
     description: 9
-    reward: 
+    reward: 0100000002000000
   - chpaterindex: 1
     episodeindex: 14
     name: Sceleton
     description: 11
-    reward: 
+    reward: 0100000002000000
   - chpaterindex: 1
     episodeindex: 15
     name: Ghost
     description: 13
-    reward: 
+    reward: 0100000002000000
   - chpaterindex: 1
     episodeindex: 16
     name: Orc
     description: 15
-    reward: 
+    reward: 0100000002000000
   - chpaterindex: 1
     episodeindex: 17
     name: Hydra
     description: 17
-    reward: 
+    reward: 0100000002000000
   - chpaterindex: 1
     episodeindex: 18
     name: Undead
     description: 19
-    reward: 
+    reward: 0100000002000000
   - chpaterindex: 1
     episodeindex: 19
     name: Dragon
     description: 21
-    reward: 
+    reward: 0100000002000000

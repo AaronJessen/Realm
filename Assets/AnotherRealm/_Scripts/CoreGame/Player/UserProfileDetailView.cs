@@ -8,10 +8,12 @@ namespace ARExplorer
 	public class UserProfileDetailView : MonoBehaviour
 	{
         [SerializeField] Button exitBtn;
-  	  	// Start is called before the first frame update
-  	  	void Start()
+        [SerializeField] SkillPoolView skillPoolViewScr;
+        // Start is called before the first frame update
+        void Start()
         {
             exitBtn.onClick.AddListener(Hide);
+            gameObject.SetActive(false);
         }
 
    	 	// Update is called once per frame
@@ -23,6 +25,7 @@ namespace ARExplorer
         public void ShowUserDetail()
         {
             gameObject.SetActive(true);
+            skillPoolViewScr.ShowSkillPanel();
         }
 
         void Hide()

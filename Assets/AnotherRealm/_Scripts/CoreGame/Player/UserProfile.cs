@@ -7,11 +7,14 @@ namespace ARExplorer
 	public class UserProfile : Singleton<UserProfile>
     {
         public UserData userData = new UserData();
-        public SkillData skillData = new SkillData();
-        // Start is called before the first frame update
-        void Start()
+        public Skill skillData;// = new SkillData();
+                                   // Start is called before the first frame update
+
+        void Awake()
         {
-            
+            skillData = Resources.Load<Skill>("Persistent/Skill");
+            Debug.Log("skillData " + skillData.dataArray.Length);
+            //tem.dataArray[0].
         }
 
    	 	// Update is called once per frame

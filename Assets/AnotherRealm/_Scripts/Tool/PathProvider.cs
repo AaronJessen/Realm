@@ -7,6 +7,7 @@ namespace ARExplorer
     {
         public static string OptionImagePath = "OptionTexture/";
         public static string dataAssetPath = "Bamboo/DataAsset/";
+        public static string skillTexturePath = "Texture/Skill/";
 
         // Start is called before the first frame update
         void Start()

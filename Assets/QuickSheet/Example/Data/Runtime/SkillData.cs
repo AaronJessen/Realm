@@ -17,16 +17,8 @@ public class SkillData
   public string Name { get {return name; } set { this.name = value;} }
   
   [SerializeField]
-  int unlocklevel;
-  public int Unlocklevel { get {return unlocklevel; } set { this.unlocklevel = value;} }
-  
-  [SerializeField]
-  int[] upgradelevel = new int[0];
-  public int[] Upgradelevel { get {return upgradelevel; } set { this.upgradelevel = value;} }
-  
-  [SerializeField]
-  string[] type = new string[0];
-  public string[] Type { get {return type; } set { this.type = value;} }
+  string[] skilltype = new string[0];
+  public string[] Skilltype { get {return skilltype; } set { this.skilltype = value;} }
   
   [SerializeField]
   int speed;
@@ -37,11 +29,23 @@ public class SkillData
   public int Range { get {return range; } set { this.range = value;} }
   
   [SerializeField]
-  float cd;
-  public float CD { get {return cd; } set { this.cd = value;} }
+  int mp;
+  public int MP { get {return mp; } set { this.mp = value;} }
   
   [SerializeField]
-  float[] skillvalue = new float[0];
-  public float[] Skillvalue { get {return skillvalue; } set { this.skillvalue = value;} }
+  int cd;
+  public int CD { get {return cd; } set { this.cd = value;} }
+  
+  [SerializeField]
+  int[] upgradegem = new int[0];
+  public int[] Upgradegem { get {return upgradegem; } set { this.upgradegem = value;} }
+  
+  [SerializeField]
+  int[] skillvalue1 = new int[0];
+  public int[] Skillvalue1 { get {return skillvalue1; } set { this.skillvalue1 = value;} }
+  
+  [SerializeField]
+  int[] skillvalue2 = new int[0];
+  public int[] Skillvalue2 { get {return skillvalue2; } set { this.skillvalue2 = value;} }
   
 }
