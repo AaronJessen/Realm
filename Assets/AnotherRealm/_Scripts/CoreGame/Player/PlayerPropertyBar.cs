@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace ARExplorer
 {
-    public class PlayerHealthBar : MonoBehaviour
+    public class PlayerPropertyBar : MonoBehaviour
     {
         [Tooltip("Image component dispplaying current health")]
         public Image healthFillImage;
@@ -22,9 +22,23 @@ namespace ARExplorer
 
             m_PlayerHealth = playerCharacterController.GetComponent<Health>();
             m_PlayerHealth.onDamaged += UpdateHealthBar;
-            playerCharacterController.playerWeaponsManagerScr.InitBatteryBar();
-            UpdateBattertBar(0);
+            // playerCharacterController.playerWeaponsManagerScr.InitBatteryBar();
+            //UpdateMPBar(UserProfile.Instance.userData.MP);
+            //InitPlayerProperty();
 
+        }
+
+        private void OnDestroy()
+        {
+            m_PlayerHealth.onDamaged -= UpdateHealthBar;
+        }
+
+        public void InitPlayerProperty()
+        {
+            UpdateMPBar(UserProfile.Instance.userData.MP);
+            m_PlayerHealth.currentHealth = UserProfile.Instance.userData.HP;
+            healthFillImage.fillAmount = 1f;
+            //UpdateHealthBar(0);
         }
 
         void Update()
@@ -33,9 +47,9 @@ namespace ARExplorer
             //healthFillImage.fillAmount = m_PlayerHealth.currentHealth / m_PlayerHealth.maxHealth;
         }
 
-        public void UpdateHealthBar(float damage, GameObject source)
+        public void UpdateHealthBar(float damage)
         {
-            Debug.Log(m_PlayerHealth.currentHealth + " : " + damage);
+//          Debug.Log(m_PlayerHealth.currentHealth + " : " + damage);
             m_PlayerHealth.currentHealth = m_PlayerHealth.currentHealth - damage;
             if (m_PlayerHealth.currentHealth <= 0f)
             {
@@ -44,7 +58,7 @@ namespace ARExplorer
             }
             else
             {
-                healthFillImage.fillAmount = m_PlayerHealth.currentHealth / m_PlayerHealth.maxHealth;
+                healthFillImage.fillAmount = m_PlayerHealth.currentHealth / (float)UserProfile.Instance.userData.HP;
                 StartCoroutine(HitEffectIE());
             }
         }
@@ -56,13 +70,10 @@ namespace ARExplorer
             playerGetHitEffect.gameObject.SetActive(false);
         }
 
-        public void UpdateBattertBar(int consume)
+        public void UpdateMPBar(int curMP)
         {
-            int curEnergy = playerCharacterController.playerWeaponsManagerScr.CurBattery - consume;
-           // Debug.Log(curEnergy + " : " + playerCharacterController.playerWeaponsManagerScr.BatteryTotal);
-
-           // Debug.Log(playerCharacterController.playerWeaponsManagerScr.name);
-            batteryFillImage.fillAmount = (float)curEnergy / (float)playerCharacterController.playerWeaponsManagerScr.BatteryTotal;
+            //int curEnergy = playerCharacterController.playerWeaponsManagerScr.CurBattery - consume;
+            batteryFillImage.fillAmount = (float)curMP / (float)UserProfile.Instance.userData.MP;
         }
     }
 }

@@ -16,7 +16,12 @@ MonoBehaviour:
   levelName: level3
   EnemySpawnList:
   - MonsterList:
-    - number: 1
+    - number: 3
+      speed: 2
+      Monster: {fileID: 4644074475067808252, guid: 79dce4b0e41714a11871339441121d55,
+        type: 3}
+  - MonsterList:
+    - number: 3
       speed: 2
       Monster: {fileID: 4644074475067808252, guid: 79dce4b0e41714a11871339441121d55,
         type: 3}

@@ -20,9 +20,10 @@ namespace ARExplorer
 		{
             for(int i = 0; i < UserProfile.Instance.skillData.dataArray.Length; i++)
             {
-                SkillItemView tem = Instantiate<SkillItemView>(skillItemViewPref, skillItemTraPar);
-
-                skillItemViewList.Add(tem);
+                if (i >= skillItemViewList.Count) {
+                    SkillItemView tem = Instantiate<SkillItemView>(skillItemViewPref, skillItemTraPar);
+                    skillItemViewList.Add(tem);
+                }
                 skillItemViewList[i].DisplaySkillItem(UserProfile.Instance.skillData.dataArray[i]);
             }
 		}

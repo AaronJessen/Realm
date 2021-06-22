@@ -28,4 +28,8 @@ public class ChapterData
   int[] reward = new int[0];
   public int[] Reward { get {return reward; } set { this.reward = value;} }
   
+  [SerializeField]
+  int[] rewardvalue = new int[0];
+  public int[] Rewardvalue { get {return rewardvalue; } set { this.rewardvalue = value;} }
+  
 }

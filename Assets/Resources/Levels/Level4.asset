@@ -20,3 +20,8 @@ MonoBehaviour:
       speed: 2
       Monster: {fileID: -4339456039380784831, guid: aa130215be1914250bb79aede224089e,
         type: 3}
+  - MonsterList:
+    - number: 2
+      speed: 2
+      Monster: {fileID: 4644074475067808252, guid: 79dce4b0e41714a11871339441121d55,
+        type: 3}

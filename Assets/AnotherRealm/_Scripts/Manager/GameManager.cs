@@ -49,17 +49,14 @@ namespace ARExplorer
         void Start()
         {
             ARProgressStatus = ARProgress.Scaning;
-            blitSetting = (Blit)forwardRendererData.rendererFeatures[1];
-            //((BlitPass)forwardRendererData.rendererFeatures[1]).blitMaterial = testMar;
-            //Debug.Log("forwardRendererData " + forwardRendererData.rendererFeatures[1].name);
-            //foreach (var k in forwardRendererData.rendererFeatures)
-            //{
-            //    Debug.Log("forwardRendererData " + k.name);
-            //    ///((BlitPass)k).blitMaterial = testMar;
-            //}
-            //tem.settings.blitMaterial = testMar;
-            //forwardRendererData.SetDirty();
-           // InvokeRepeating("ChangeMat", 1, 2);
+            if (forwardRendererData != null && forwardRendererData.rendererFeatures != null && forwardRendererData.rendererFeatures.Count > 1)
+            {
+                blitSetting = (Blit)forwardRendererData.rendererFeatures[1];
+            }
+            else
+            {
+                blitSetting.settings.blitMaterial = null;
+            }
         }
 
         public void ChangeMat(int index)

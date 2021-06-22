@@ -10,31 +10,31 @@ namespace ARExplorer
         [Tooltip("Health ratio at which the critical health vignette starts appearing")]
         public float criticalHealthRatio = 0.3f;
 
-        public UnityAction<float, GameObject> onDamaged;
+        public UnityAction<float> onDamaged;
         public UnityAction<float> onHealed;
         public UnityAction onDie;
 
         public float currentHealth { get; set; }
         public bool invincible { get; set; }
-        public bool canPickup() => currentHealth < maxHealth;
+        //public bool canPickup() => currentHealth < maxHealth;
 
-        public float getRatio() => currentHealth / maxHealth;
-        public bool isCritical() => getRatio() <= criticalHealthRatio;
+        //public float getRatio() => currentHealth / maxHealth;
+        //public bool isCritical() => getRatio() <= criticalHealthRatio;
 
         bool m_IsDead;
 
         private void Start()
         {
-            currentHealth = maxHealth;
+            //currentHealth = maxHealth;
 
-            CrystleCtrl.HitCrystalEvent += TakeDamage;
+            //CrystleCtrl.HitCrystalEvent += TakeDamage;
             PlayerCharacterController.HitPlayerEvent += TakeDamage;
             
         }
 
         private void OnDestroy()
         {
-            CrystleCtrl.HitCrystalEvent -= TakeDamage;
+            //CrystleCtrl.HitCrystalEvent -= TakeDamage;
             PlayerCharacterController.HitPlayerEvent -= TakeDamage;
         }
         //private void UpdateHealthBar(int damgage, )
@@ -43,66 +43,66 @@ namespace ARExplorer
         //    healthFillImage.fillAmount = m_PlayerHealth.currentHealth / m_PlayerHealth.maxHealth;
         //}
 
-        public void Heal(float healAmount)
-        {
-            float healthBefore = currentHealth;
-            currentHealth += healAmount;
-            currentHealth = Mathf.Clamp(currentHealth, 0f, maxHealth);
+        //public void Heal(float healAmount)
+        //{
+        //    float healthBefore = currentHealth;
+        //    currentHealth += healAmount;
+        //    currentHealth = Mathf.Clamp(currentHealth, 0f, maxHealth);
 
-            // call OnHeal action
-            float trueHealAmount = currentHealth - healthBefore;
-            if (trueHealAmount > 0f && onHealed != null)
-            {
-                onHealed.Invoke(trueHealAmount);
-            }
-        }
+        //    // call OnHeal action
+        //    float trueHealAmount = currentHealth - healthBefore;
+        //    if (trueHealAmount > 0f && onHealed != null)
+        //    {
+        //        onHealed.Invoke(trueHealAmount);
+        //    }
+        //}
 
         public void TakeDamage(float damage, GameObject damageSource)
         {
             if (invincible)
                 return;
 
-            float healthBefore = currentHealth;
-            currentHealth -= damage;
-            currentHealth = Mathf.Clamp(currentHealth, 0f, maxHealth);
+            //float healthBefore = currentHealth;
+            //currentHealth -= damage;
+            //currentHealth = Mathf.Clamp(currentHealth, 0f, maxHealth);
 
-            // call OnDamage action
-            float trueDamageAmount = healthBefore - currentHealth;
-            if (trueDamageAmount > 0f && onDamaged != null)
+            //// call OnDamage action
+            //float trueDamageAmount = healthBefore - currentHealth;
+            if (damage > 0f && onDamaged != null)
             {
-                onDamaged.Invoke(trueDamageAmount, damageSource);
+                onDamaged.Invoke(damage);
             }
 
-            HandleDeath();
+           // HandleDeath();
         }
 
-        public void Kill()
-        {
-            currentHealth = 0f;
+        //public void Kill()
+        //{
+        //    currentHealth = 0f;
 
-            // call OnDamage action
-            if (onDamaged != null)
-            {
-                onDamaged.Invoke(maxHealth, null);
-            }
+        //    // call OnDamage action
+        //    if (onDamaged != null)
+        //    {
+        //        onDamaged.Invoke(maxHealth);
+        //    }
 
-            HandleDeath();
-        }
+        //    HandleDeath();
+        //}
 
-        private void HandleDeath()
-        {
-            if (m_IsDead)
-                return;
+        //private void HandleDeath()
+        //{
+        //    if (m_IsDead)
+        //        return;
 
-            // call OnDie action
-            if (currentHealth <= 0f)
-            {
-                if (onDie != null)
-                {
-                    m_IsDead = true;
-                    onDie.Invoke();
-                }
-            }
-        }
+        //    // call OnDie action
+        //    if (currentHealth <= 0f)
+        //    {
+        //        if (onDie != null)
+        //        {
+        //            m_IsDead = true;
+        //            onDie.Invoke();
+        //        }
+        //    }
+        //}
     }
 }

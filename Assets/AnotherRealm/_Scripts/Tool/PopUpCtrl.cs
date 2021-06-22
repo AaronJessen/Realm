@@ -70,6 +70,7 @@ namespace ARExplorer
             messagePopUpViewScr.ShowMessage(msg, success);
         }
 
+
         public void CloseErrorPopUpWindow()
         {
             popupParentPanel.SetActive(false);

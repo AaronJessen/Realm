@@ -26,16 +26,27 @@ namespace ARExplorer
 
         public void InitFactory(int count)
         {
-            BlackHoleList = new List<GameObject>();
+            transform.localPosition = new Vector3(Random.Range(-3, 3), 0, Random.Range(50, 55));
+            return;
+            //BlackHoleList = new List<GameObject>();
+            Debug.Log("InitFactory " + BlackHoleList.Count);
+            for(int i = 0; i < BlackHoleList.Count; i++)
+            {
+                BlackHoleList[i].SetActive(false);
+            }
 
             for (int i = 0; i < count; i++)
             {
-                GameObject g = Instantiate(BlackHolePre);
-                Transform t = g.transform;
-                t.SetParent(ParTrans);
-                t.localScale = Vector3.one;
-                t.localPosition = new Vector3(Random.Range(-10, 10), 0, Random.Range(50, 55));
-                BlackHoleList.Add(g);
+                if (i >= BlackHoleList.Count)
+                {
+                    GameObject g = Instantiate(BlackHolePre);
+                    Transform t = g.transform;
+                    t.SetParent(ParTrans);
+                    t.localScale = Vector3.one;
+                    BlackHoleList.Add(g);
+                }
+                BlackHoleList[i].transform.localPosition = new Vector3(Random.Range(-10, 10), 0, Random.Range(50, 55));
+
             }
         }
     }

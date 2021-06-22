@@ -9,7 +9,8 @@ namespace ARExplorer
 	{
         [Tooltip("Image component dispplaying current health")]
         public Image healthFillImage;
-
+        public GameObject flyTxtPref;
+        public RectTransform flyTxtPar;
         //Health m_PlayerHealth;
         float curHealth = 10;
         public float CurHealth
@@ -19,6 +20,7 @@ namespace ARExplorer
         }
 
         float maxHealth = 10;
+
         private void Awake()
         {
             //PlayerCharacterController playerCharacterController = GameObject.FindObjectOfType<PlayerCharacterController>();
@@ -26,26 +28,36 @@ namespace ARExplorer
 
             //m_PlayerHealth = playerCharacterController.GetComponent<Health>();
             //m_PlayerHealth.onDamaged += UpdateHealthBar;
-            curHealth = maxHealth;
+            CurHealth = maxHealth;
 
         }
 
         void Update()
         {
-            //transform.rotation = Quaternion.LookRotation(transform.position - Camera.main.transform.position);
-            transform.LookAt(Camera.main.transform.position);
+            transform.rotation = Quaternion.LookRotation(transform.position - Camera.main.transform.position);
+            //transform.LookAt(Camera.main.transform.position);
         }
 
         public void SetupHealthBar(float health)
         {
             maxHealth = health;
-            curHealth = maxHealth;
+            CurHealth = maxHealth;
+            healthFillImage.fillAmount = 1f;
         }
 
-        public void UpdateHealthBar(float damage)
+        public void UpdateHealthBar(int damage)
         {
-            curHealth -= damage;
-            healthFillImage.fillAmount = curHealth / maxHealth;
+            CurHealth -= damage;
+
+            healthFillImage.fillAmount = CurHealth / maxHealth;
+
+            GameObject tem = SimplePool.Spawn(flyTxtPref, Vector3.zero, Quaternion.identity);
+            tem.transform.SetParent(flyTxtPar);
+
+            tem.transform.localPosition = Vector3.zero;
+            tem.transform.localEulerAngles = Vector3.zero;
+
+            tem.GetComponent<Text>().text = "-" + damage.ToString();
         }
     }
 }

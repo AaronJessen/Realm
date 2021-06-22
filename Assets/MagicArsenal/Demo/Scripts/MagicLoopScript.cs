@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using ARExplorer;
 namespace MagicArsenal {
 
 public class MagicLoopScript : MonoBehaviour {

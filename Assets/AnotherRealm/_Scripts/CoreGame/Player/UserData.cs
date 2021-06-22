@@ -8,18 +8,17 @@ namespace ARExplorer
 	{
         string UserNameTag = "UserName";
         string CurrentEXPTag = "CurrentEXP";
-        string CurrentDiamondTag = "CurrentDiamond";
+        //string CurrentDiamondTag = "CurrentDiamond";
         string SkillGemTag = "SkillGem";
         string SkillLevelTag = "SkillLevel";
         string LevelTag = "Level";
         string CurrentChapterIndexTag = "CurrentChapterIndex";
-        string CurrentEpisodeIndexTag = "CurrentEpisodeIndex";
+        string CurrentUnlockEpisodeIndexTag = "CurrentUnlockEpisodeIndex";
 
         
-        string MobileTag = "Mobile";
-        string CodeTag = "Code";
-
-        string LastNameTag = "LastName";
+        string DiamondTag = "Diamond";
+        string GoldTag = "Gold";
+        string StrengthTag = "Strength";
 
 
         public delegate void LevelUpEventHandle();
@@ -45,9 +44,9 @@ namespace ARExplorer
             }
             set
             {
-                if (CurrentEXP >= NextLevelEXP)
+                if (value >= NextLevelEXP)
                 {
-                    CurrentEXP = CurrentEXP - NextLevelEXP;
+                    value = value - NextLevelEXP;
                     Level++;
                     LevelUpEvent?.Invoke();
                 }
@@ -95,17 +94,17 @@ namespace ARExplorer
             }
         }
 
-        public int CurrentDiamond
-        {
-            get
-            {
-                return PlayerPrefs.GetInt(CurrentDiamondTag, 100);
-            }
-            set
-            {
-                PlayerPrefs.SetInt(CurrentDiamondTag, value);
-            }
-        }
+        //public int CurrentDiamond
+        //{
+        //    get
+        //    {
+        //        return PlayerPrefs.GetInt(CurrentDiamondTag, 100);
+        //    }
+        //    set
+        //    {
+        //        PlayerPrefs.SetInt(CurrentDiamondTag, value);
+        //    }
+        //}
         
 
         public int CurrentChapterIndex
@@ -120,27 +119,64 @@ namespace ARExplorer
             }
         }
 
-        public int CurrentEpisodeIndex
+        public int CurrentUnlockEpisodeIndex
         {
             get
             {
-                return PlayerPrefs.GetInt(CurrentEpisodeIndexTag, 0);
+                return PlayerPrefs.GetInt(CurrentUnlockEpisodeIndexTag, 0);
             }
             set
             {
-                PlayerPrefs.SetInt(CurrentEpisodeIndexTag, value);
+                PlayerPrefs.SetInt(CurrentUnlockEpisodeIndexTag, value);
             }
         }
+
+        public int Diamond
+        {
+            get
+            {
+                return PlayerPrefs.GetInt(DiamondTag, UserProfile.Instance.userConfigData.dataArray[0].Diamond);
+            }
+            set
+            {
+                PlayerPrefs.SetInt(DiamondTag, value);
+            }
+        }
+
+        public int Strength
+        {
+            get
+            {
+                return PlayerPrefs.GetInt(StrengthTag, UserProfile.Instance.userConfigData.dataArray[0].Strength);
+            }
+            set
+            {
+                PlayerPrefs.SetInt(StrengthTag, value);
+            }
+        }
+
+        public int Gold
+        {
+            get
+            {
+                return PlayerPrefs.GetInt(GoldTag, UserProfile.Instance.userConfigData.dataArray[0].Gold);
+            }
+            set
+            {
+                PlayerPrefs.SetInt(GoldTag, value);
+            }
+        }
+
 
         public int GetSkillGem(string name)
         {          
             return PlayerPrefs.GetInt(SkillGemTag + name, 0);
         }
 
-        public void AddSkillGem(string name, int value)
+        public void SetSkillGem(string name, int value)
         {
             string key = SkillGemTag + name;
-            PlayerPrefs.SetInt(key, GetSkillGem(name) + value);
+            PlayerPrefs.SetInt(key, value);
         }
 
         public int GetSkillLevel(string name)
@@ -148,10 +184,10 @@ namespace ARExplorer
             return PlayerPrefs.GetInt(SkillLevelTag + name, 0);
         }
 
-        public void AddSkillLevel(string name, int value)
+        public void SetSkillLevel(string name, int value)
         {
             string key = SkillLevelTag + name;
-            PlayerPrefs.SetInt(key, GetSkillLevel(name) + value);
+            PlayerPrefs.SetInt(key, value);
         }
 
     }

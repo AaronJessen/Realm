@@ -9,21 +9,23 @@ namespace ARExplorer
 
         [SerializeField] SelectLevelView selectLevelViewPrefab;
         [SerializeField] RectTransform levelViewPar;
-        [SerializeField] Chapter allChapter;
-        public static int curLevel = 6;
+        //[SerializeField] Chapter allChapter;
+
         List<List<ChapterData>> allChapterDataList = new List<List<ChapterData>>();
         List<SelectLevelView> selectLevelViewList = new List<SelectLevelView>();
+        public static int curLevel = 0;
+
         // Start is called before the first frame update
         void Awake()
         {
-            for (int i = 0; i < allChapter.dataArray.Length; i++)
+            for (int i = 0; i < UserProfile.Instance.allChapter.dataArray.Length; i++)
             {
-                int chapterIndex = allChapter.dataArray[i].Chpaterindex;
+                int chapterIndex = UserProfile.Instance.allChapter.dataArray[i].Chpaterindex;
                 if (chapterIndex >= allChapterDataList.Count) {
                     allChapterDataList.Add(new List<ChapterData>());
                 }
-                Debug.Log(allChapterDataList.Count + " : " + chapterIndex);
-                allChapterDataList[chapterIndex].Add(allChapter.dataArray[i]);
+                //Debug.Log(allChapterDataList.Count + " : " + chapterIndex);
+                allChapterDataList[chapterIndex].Add(UserProfile.Instance.allChapter.dataArray[i]);
 
 
             }
@@ -34,13 +36,12 @@ namespace ARExplorer
                 selectLevelViewList.Add(tem);
             }
             SelectLevelView.SelectLevelEvent += EnterLevelMode;
-
-           // EnterButton.onClick.AddListener(EnterARMode);
         }
 
         private void OnDestroy()
         {
             SelectLevelView.SelectLevelEvent -= EnterLevelMode;
+           // LevelCtrl.WinEvent -= WinResult;
         }
 
         // Update is called once per frame
@@ -52,7 +53,6 @@ namespace ARExplorer
         void EnterLevelMode(int level)
         {
             curLevel = level;
-           // GameManager.Instance.VuforiaToggle(true);
             LoadScene.JumpToScene(1);
         }
 

@@ -61,6 +61,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 0.12629052, g: 0.49727497, b: 0.8113208, a: 1}
   m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -135,6 +136,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 0.9433962, g: 0.93004626, b: 0.93004626, a: 1}
   m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -209,6 +211,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -233,6 +236,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!64 &2311938651388323072
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -261,6 +265,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthFillImage: {fileID: 4234425318348516603}
   batteryFillImage: {fileID: 0}
+  playerGetHitEffect: {fileID: 0}
 --- !u!1 &4833061041447987340
 GameObject:
   m_ObjectHideFlags: 0
@@ -356,7 +361,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb767aa2ee2624a0586024157ad1d562, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelBuilder: {fileID: 11400000, guid: 09be6e2b8387041d4857e9746c20c5d0, type: 2}
+  levelBuilder: {fileID: 0}
   blackHoleCtrlScr: {fileID: 4833061042653166518}
   crystleCtrlScr: {fileID: 2326712684433523728}
 --- !u!1 &4833061042653166516
@@ -445,6 +450,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7758912407161565993}
     m_Modifications:
+    - target: {fileID: 794103121209003697, guid: 9d0ddebf8f19e480588ca14b2d46fcf6,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2590693701850638238, guid: 9d0ddebf8f19e480588ca14b2d46fcf6,
         type: 3}
       propertyPath: m_Name
@@ -454,6 +464,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3244764016854509782, guid: 9d0ddebf8f19e480588ca14b2d46fcf6,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3865925413660061718, guid: 9d0ddebf8f19e480588ca14b2d46fcf6,
         type: 3}

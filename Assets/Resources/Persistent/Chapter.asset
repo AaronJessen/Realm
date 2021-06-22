@@ -17,101 +17,127 @@ MonoBehaviour:
   dataArray:
   - chpaterindex: 0
     episodeindex: 0
-    name: Goblin
-    description: 1
+    name: Discover World 1
+    description: 1 Time Explore
     reward: 010000000200000003000000
+    rewardvalue: 020000000300000005000000
   - chpaterindex: 0
     episodeindex: 1
-    name: Wolf
-    description: 1
+    name: Discover World 2
+    description: 2 Time Explore
     reward: 0100000002000000
+    rewardvalue: 0100000002000000
   - chpaterindex: 0
     episodeindex: 2
-    name: Scavanger
-    description: 1
-    reward: 0100000002000000
+    name: Discover World 3
+    description: 3 Time Explore
+    reward: 010000000200000003000000
+    rewardvalue: 010000000200000003000000
   - chpaterindex: 0
     episodeindex: 3
-    name: Lurker
-    description: 9
-    reward: 0100000002000000
+    name: Discover World 4
+    description: 4 Time Explore
+    reward: 0100000003000000
+    rewardvalue: 0100000004000000
   - chpaterindex: 0
     episodeindex: 4
-    name: Sceleton
-    description: 11
+    name: Discover World 5
+    description: 5 Time Explore
     reward: 0100000002000000
+    rewardvalue: 0400000005000000
   - chpaterindex: 0
     episodeindex: 5
-    name: Ghost
-    description: 13
-    reward: 0100000002000000
+    name: Discover World 6
+    description: 6 Time Explore
+    reward: 0200000003000000
+    rewardvalue: 0100000006000000
   - chpaterindex: 0
     episodeindex: 6
-    name: Orc
-    description: 15
+    name: Discover World 7
+    description: 7 Time Explore
     reward: 0100000002000000
+    rewardvalue: 0100000007000000
   - chpaterindex: 0
     episodeindex: 7
-    name: Hydra
-    description: 17
+    name: Discover World 8
+    description: 8 Time Explore
     reward: 0100000002000000
+    rewardvalue: 0100000008000000
   - chpaterindex: 0
     episodeindex: 8
-    name: Undead
-    description: 19
+    name: Discover World 9
+    description: 9 Time Explore
     reward: 0100000002000000
+    rewardvalue: 0100000009000000
   - chpaterindex: 0
     episodeindex: 9
-    name: Dragon
-    description: 21
+    name: Discover World 10
+    description: 10 Time Explore
     reward: 0100000002000000
+    rewardvalue: 010000000a000000
   - chpaterindex: 1
     episodeindex: 10
-    name: Goblin
-    description: 1
+    name: Discover World 11
+    description: 11 Time Explore
     reward: 010000000200000003000000
+    rewardvalue: 040000000500000002000000
   - chpaterindex: 1
     episodeindex: 11
-    name: Wolf
-    description: 1
+    name: Discover World 12
+    description: 12 Time Explore
     reward: 0100000002000000
+    rewardvalue: 0100000007000000
   - chpaterindex: 1
     episodeindex: 12
-    name: Scavanger
-    description: 1
+    name: Discover World 13
+    description: 13 Time Explore
     reward: 0100000002000000
+    rewardvalue: 0100000008000000
   - chpaterindex: 1
     episodeindex: 13
-    name: Lurker
-    description: 9
+    name: Discover World 14
+    description: 14 Time Explore
     reward: 0100000002000000
+    rewardvalue: 0100000009000000
   - chpaterindex: 1
     episodeindex: 14
-    name: Sceleton
-    description: 11
+    name: Discover World 15
+    description: 15 Time Explore
     reward: 0100000002000000
+    rewardvalue: 010000000a000000
   - chpaterindex: 1
     episodeindex: 15
-    name: Ghost
-    description: 13
+    name: Discover World 16
+    description: 16 Time Explore
     reward: 0100000002000000
+    rewardvalue: 010000000b000000
   - chpaterindex: 1
     episodeindex: 16
-    name: Orc
-    description: 15
+    name: Discover World 17
+    description: 17 Time Explore
     reward: 0100000002000000
+    rewardvalue: 010000000c000000
   - chpaterindex: 1
     episodeindex: 17
-    name: Hydra
-    description: 17
+    name: Discover World 18
+    description: 18 Time Explore
     reward: 0100000002000000
+    rewardvalue: 010000000d000000
   - chpaterindex: 1
     episodeindex: 18
-    name: Undead
-    description: 19
+    name: Discover World 19
+    description: 19 Time Explore
     reward: 0100000002000000
+    rewardvalue: 010000000e000000
   - chpaterindex: 1
     episodeindex: 19
-    name: Dragon
-    description: 21
+    name: Discover World 20
+    description: 20 Time Explore
     reward: 0100000002000000
+    rewardvalue: 010000000f000000
+  - chpaterindex: 0
+    episodeindex: 0
+    name: 
+    description: 
+    reward: 
+    rewardvalue: 

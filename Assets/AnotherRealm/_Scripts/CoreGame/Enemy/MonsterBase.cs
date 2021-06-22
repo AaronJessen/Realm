@@ -23,7 +23,13 @@ namespace ARExplorer
         void Awake()
         {
             m_Animator = m_Model.GetComponent<Animator>();
+            SpellBase.HitEnemyEvent += GetDamage;
             AddAnimationListner();
+        }
+
+        private void OnDestroy()
+        {
+            SpellBase.HitEnemyEvent -= GetDamage;
         }
 
         // Update is called once per frame
@@ -105,7 +111,7 @@ namespace ARExplorer
             //    GetDamage("Take Damage");
             //    Debug.Log("OnTriggerEnter " + collision.gameObject.name);
             //}
-            if (collision.tag == "Player")
+            if (collision.tag == "Player" && m_MonsterState != MonsterState.Die)
             {
                 m_MonsterState = MonsterState.Attack;
                 //m_MonsterState = MonsterState.Attack;
@@ -117,21 +123,8 @@ namespace ARExplorer
 
         private void OnTriggerEnter(Collider collision)
         {
-            if (collision.tag == "Bullet")
+             if (collision.tag == "Player" && m_MonsterState != MonsterState.Die)
             {
-                GetDamage("Take Damage");
-                //SimplePool.Despawn(collision.gameObject);
-                Debug.Log("OnTriggerEnter Bullet " + collision.gameObject.name);
-            }
-            if (collision.tag == "SpotLightCollider")
-            {
-                GetDamage("Take Damage");
-                //SimplePool.Despawn(collision.gameObject);
-                Debug.Log("OnTriggerEnter " + collision.gameObject.name);
-            }
-            else if (collision.tag == "Player")
-            {
-                Debug.Log("OnTriggerEnter");
                 m_MonsterState = MonsterState.Attack;
                 MoveForward("Fly Forward", false);
             }
@@ -148,16 +141,16 @@ namespace ARExplorer
         }
 
 
-        public virtual void GetDamage(string key)
+        public virtual void GetDamage(GameObject hitObject, int damageValue)
         {
-            if(m_MonsterState == MonsterState.Die)
+            if(m_MonsterState == MonsterState.Die || hitObject != gameObject)
             {
                 return;
             }
 
             //gameObject.SetActive(false);
-            Debug.Log("GetDamage");
-            enemyHealthBarScr.UpdateHealthBar(1f);
+            Debug.Log("GetDamage " + gameObject.name + " : " +  enemyHealthBarScr.CurHealth + " " + m_MonsterState);
+            enemyHealthBarScr.UpdateHealthBar(damageValue);
             if (enemyHealthBarScr.CurHealth <= 0)
             {
                 m_MonsterState = MonsterState.Die;
@@ -166,7 +159,7 @@ namespace ARExplorer
             else
             {
                 m_MonsterState = MonsterState.GetDamage;
-                m_Animator.SetTrigger(key);
+                m_Animator.SetTrigger("Take Damage");
 
                 StartCoroutine(MonsterGetHitIE());
             }
@@ -178,11 +171,14 @@ namespace ARExplorer
         {
             yield return new WaitForSeconds(0.5f);
             //transform.localScale = Vector3.zero;
-           // yield return new WaitForSeconds(2f);
-           // transform.localPosition = new Vector3(Random.Range(transform.localPosition.x - 10, transform.localPosition.x + 10), transform.localPosition.y, transform.localPosition.z);
+            // yield return new WaitForSeconds(2f);
+            // transform.localPosition = new Vector3(Random.Range(transform.localPosition.x - 10, transform.localPosition.x + 10), transform.localPosition.y, transform.localPosition.z);
             //gameObject.SetActive(true);
             //transform.localScale = Vector3.one;
-            m_MonsterState = MonsterState.Move;
+            if (m_MonsterState != MonsterState.Die)
+            {
+                m_MonsterState = MonsterState.Move;
+            }
         }
 
 
@@ -231,7 +227,7 @@ namespace ARExplorer
         void Create(float speed);
         void Move();
         void Attack(string key);
-        void GetDamage(string key);
+        void GetDamage(GameObject hitObject, int value);
         void Die(string key);
     }
 

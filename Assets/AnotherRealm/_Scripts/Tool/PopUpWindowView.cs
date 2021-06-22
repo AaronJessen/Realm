@@ -21,12 +21,18 @@ namespace ARExplorer
         Button ExitMessageWindowBtn;
 
         [SerializeField]
-        Button NextLevelBtn;
-
+        Button NextOrRetryBtn;
+        [SerializeField] Text NextOrRetryTxt;
         [SerializeField]
         LoadingHelper loadingHelperScr;
         [SerializeField]
         GameObject messagePanel;
+        [SerializeField]
+        Transform rewardPanel;
+        [SerializeField]
+        RewardItemView rewardItemViewPref;
+
+        List<RewardItemView> rewardItemViewList = new List<RewardItemView>();
 
         //[SerializeField]
         //ARScaningPopupWindow ARScaningPopupWindowScr;
@@ -40,7 +46,8 @@ namespace ARExplorer
         void Start()
         {
             ExitMessageWindowBtn.onClick.AddListener(ExitWindow);
-            NextLevelBtn.onClick.AddListener(NextLevel);
+            NextOrRetryBtn.onClick.AddListener(NextOrRetryLevel);
+            //NextLevelTxt = NextLevelBtn.GetComponentInChildren<Text>();
         }
 
         private void Awake()
@@ -54,22 +61,46 @@ namespace ARExplorer
             
 		}
 
+        //public void ShowWinWindow(int[] Reward, int[] RewardValue)
+        //{
+
+        //}
 
         public void ShowMessage(string msg, bool success = true)
         {
             mainMessageText.text = msg;
             selfImage.enabled = true;
             //ExitMessageWindowBtn.gameObject.SetActive(false);
-            NextLevelBtn.gameObject.SetActive(false);
+            //NextLevelBtn.gameObject.SetActive(false);
+            rewardPanel.gameObject.SetActive(success);
+            int curLevel = MapPanelView.curLevel; //UserProfile.Instance.userData.CurrentUnlockEpisodeIndex;
             if (success)
             {
-                NextLevelBtn.gameObject.SetActive(true);
+                ///NextLevelBtn.gameObject.SetActive(true);
+                NextOrRetryTxt.text = "Next";
                 titleMessageText.text = "Success";
                 additionalMessageText.gameObject.SetActive(false);
                 resultImage.gameObject.SetActive(false);
+                int[] reward = UserProfile.Instance.allChapter.dataArray[curLevel].Reward;
+                int[] rewardValue = UserProfile.Instance.allChapter.dataArray[curLevel].Rewardvalue;
+                //Debug.Log("reward " + reward.Length + " : " + rewardValue.Length + " " + rewardItemViewList.Count);
+                for (int i = 0; i < reward.Length; i++)
+                {
+                    if (i >= rewardItemViewList.Count)
+                    {
+                        RewardItemView tem = Instantiate<RewardItemView>(rewardItemViewPref, rewardPanel);
+                        rewardItemViewList.Add(tem);
+                    }
+                    string rewardName = GetReward(reward[i], rewardValue[i]);
+                    rewardItemViewList[i].Show(rewardName, rewardValue[i]);
+
+                }
+                MapPanelView.curLevel += 1;
+
             }
             else
             {
+                NextOrRetryTxt.text = "Retry";
                 titleMessageText.text = "Opps";
                 additionalMessageText.gameObject.SetActive(true);
                 resultImage.gameObject.SetActive(true);
@@ -78,6 +109,28 @@ namespace ARExplorer
             }
             messagePanel.SetActive(true);
             gameObject.SetActive(true);
+        }
+
+        private string GetReward(int key, int value)
+        {
+            string displyName = "";
+            if(key == 1)
+            {
+                displyName = "diamond";
+                UserProfile.Instance.userData.Diamond += value;
+            }
+            else if (key == 2)
+            {
+                displyName = "gold";
+                UserProfile.Instance.userData.Gold += value;
+            }
+            else if (key == 3)
+            {
+                displyName = "strength";
+                UserProfile.Instance.userData.Strength += value;
+            }
+            return displyName;
+
         }
 
         public void ExitWindow()
@@ -89,13 +142,16 @@ namespace ARExplorer
             // ARScaningPopupWindowScr.gameObject.SetActive(false);
         }
 
-        private void NextLevel()
+        private void NextOrRetryLevel()
         {
             selfImage.enabled = true;
             messagePanel.SetActive(false);
             gameObject.SetActive(false);
 
-            MapPanelView.curLevel += 1;
+
+            //LoadScene.JumpToScene(1);
+
+            FindObjectOfType<PlayerCharacterController>().InitPlyerSetting();
             FindObjectOfType<LevelCtrl>().LoadLevel(MapPanelView.curLevel);
             //LoadScene.JumpToNextLevel(1);
         }

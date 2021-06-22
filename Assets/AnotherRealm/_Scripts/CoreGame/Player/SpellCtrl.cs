@@ -6,24 +6,46 @@ using UnityEngine.UI;
 
 namespace ARExplorer
 {
-	public class SpotLightCtrl : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerExitHandler
+	public class SpellCtrl : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerExitHandler
     {
-        public delegate void ShotToggleEventHandler(int index);
+        public delegate void ShotToggleEventHandler(SkillData skillData);
         public static event ShotToggleEventHandler ShotToggleEvent;
         [SerializeField] int skillIndex;
         [SerializeField] int speed;
         [SerializeField] Image skillFreezeImg;
+
+        [SerializeField] Image sourceImg;
+
         bool isReleased = false;
         bool canReleaseSkill = true;
 
         public float skillFreezeTime = 1f;
         public float pressDownTime = 0;
         [SerializeField] MagicProjectileScript curMagicProjectileScript;
+        SkillData m_SkillData;
         // Start is called before the first frame update
         void Start()
 		{
     	 	   
 		}
+
+        public void Display(SkillData skillData)
+        {
+            m_SkillData = skillData;
+            skillFreezeTime = m_SkillData.CD;
+            sourceImg.sprite = Resources.Load<Sprite>(PathProvider.rewardTexturePath + skillData.Name);
+            sourceImg.SetNativeSize();
+            sourceImg.GetComponent<RectTransform>().sizeDelta = new Vector2(150, 150);
+
+            if(UserProfile.Instance.userData.GetSkillLevel(skillData.Name) > 0)
+            {
+                gameObject.SetActive(true);
+            }
+            else
+            {
+                gameObject.SetActive(false);
+            }
+        }
 	
 		// Update is called once per frame
 		void Update()
@@ -53,34 +75,18 @@ namespace ARExplorer
             if (canReleaseSkill)
             {
                 canReleaseSkill = false;
-                ShotToggleEvent?.Invoke(skillIndex);
+                ShotToggleEvent?.Invoke(m_SkillData);
             }
 
             isReleased = true;
-            //isPress = true;
-            ////ShotToggleEvent?.Invoke(true);
-            ////LongPress(true);
-            //Debug.Log("按下");
         }
         public void OnPointerUp(PointerEventData eventData)
         {
-           // isDown = false;
-            //isPress = false;
-            //ShotToggleEvent?.Invoke(false);
-            Debug.Log("抬起");
-            //if (IsStart)
-            //{
-            //    LongPress(false);
-            //    Debug.Log("抬起");
-            //}
         }
 
 
         public void OnPointerExit(PointerEventData eventData)
         {
-            //isDown = false;
-            //isPress = false;
-
         }
     }
 }

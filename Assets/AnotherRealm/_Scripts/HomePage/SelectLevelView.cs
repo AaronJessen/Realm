@@ -13,6 +13,8 @@ namespace ARExplorer
         [SerializeField] Text desText;
         [SerializeField] Text rewardText;
         [SerializeField] GameObject blockObject;
+        [SerializeField] Image sourceImg;
+
         int level;
         public delegate void SelectLevelEventHandler(int level);
         public static SelectLevelEventHandler SelectLevelEvent;
@@ -27,6 +29,8 @@ namespace ARExplorer
 
         public void InitLevelView(ChapterData chapterData)
         {
+            sourceImg.sprite = Resources.Load<Sprite>(PathProvider.levelTexturePath + chapterData.Episodeindex);
+
             level = chapterData.Episodeindex;
             nameText.text = chapterData.Name;
             desText.text = chapterData.Description;
@@ -36,7 +40,7 @@ namespace ARExplorer
             }
 
             //Debug.Log(UserProfile.Instance.userData.CurrentEpisodeIndex + " " + chapterData.Episodeindex);
-            if(UserProfile.Instance.userData.CurrentEpisodeIndex >= chapterData.Episodeindex)
+            if(UserProfile.Instance.userData.CurrentUnlockEpisodeIndex >= chapterData.Episodeindex)
             {
                 blockObject.SetActive(false);
             }
@@ -49,7 +53,16 @@ namespace ARExplorer
    	 	// Update is called once per frame
 		void SelcetLevel()
 		{
-            SelectLevelEvent?.Invoke(level);
+            if (UserProfile.Instance.userData.Strength >= 3)
+            {
+                MapPanelView.curLevel = level;
+                UserProfile.Instance.userData.Strength -= 3;
+                SelectLevelEvent?.Invoke(level);
+            }
+            else
+            {
+                PopUpCtrl.Instance.ShowPopUpWindow("Not Enough Strength", false);
+            }
 
         }
 	}

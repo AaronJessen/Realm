@@ -9,6 +9,9 @@ namespace ARExplorer
 	{
         [SerializeField] Button exitBtn;
         [SerializeField] SkillPoolView skillPoolViewScr;
+        [SerializeField] UserProfileView userProfileViewScr;
+        [SerializeField] Text hpText;
+        [SerializeField] Text mpText;
         // Start is called before the first frame update
         void Start()
         {
@@ -22,9 +25,17 @@ namespace ARExplorer
             
 		}
 
+        private void ShowUserInfo()
+        {
+            hpText.text = UserProfile.Instance.userData.HP.ToString();
+            mpText.text = UserProfile.Instance.userData.MP.ToString();
+            userProfileViewScr.ShowUserInfo();
+        }
+
         public void ShowUserDetail()
         {
             gameObject.SetActive(true);
+            ShowUserInfo();
             skillPoolViewScr.ShowSkillPanel();
         }
 

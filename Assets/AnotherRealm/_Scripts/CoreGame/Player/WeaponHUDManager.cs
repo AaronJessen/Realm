@@ -1,88 +1,49 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
 using UnityEngine.EventSystems;
 
-public class WeaponHUDManager : MonoBehaviour
+namespace ARExplorer
 {
-    [Tooltip("UI panel containing the layoutGroup for displaying weapon ammos")]
-    public RectTransform ammosPanel;
-    [Tooltip("Prefab for displaying weapon ammo")]
-    public GameObject ammoCounterPrefab;
-
-    [SerializeField] Button baseShotBtn;
-    [SerializeField] Button skillShot1Btn;
-
-    public delegate void BaseShotToggleEventHandler();
-    public static event BaseShotToggleEventHandler BaseShotToggleEvent;
-
-    //PlayerWeaponsManager m_PlayerWeaponsManager;
-    //List<AmmoCounter> m_AmmoCounters = new List<AmmoCounter>();
-
-    void Start()
+    public class WeaponHUDManager : MonoBehaviour
     {
-        //baseShotBtn.onClick.AddListener(OrdinaryShow);
-        //baseShotBtn.onpo
-        //m_PlayerWeaponsManager = FindObjectOfType<PlayerWeaponsManager>();
-        //DebugUtility.HandleErrorIfNullFindObject<PlayerWeaponsManager, WeaponHUDManager>(m_PlayerWeaponsManager, this);
+        //[Tooltip("UI panel containing the layoutGroup for displaying weapon ammos")]
+        //public RectTransform ammosPanel;
+        //[Tooltip("Prefab for displaying weapon ammo")]
+        public SpellCtrl spellCtrlPrefab;
+        List<SpellCtrl> spellCtrlList = new List<SpellCtrl>();
 
-        //WeaponController activeWeapon = m_PlayerWeaponsManager.GetActiveWeapon();
-        //if (activeWeapon)
-        //{
-        //    AddWeapon(activeWeapon, m_PlayerWeaponsManager.activeWeaponIndex);
-        //    ChangeWeapon(activeWeapon);
-        //}
+        //[SerializeField] Button baseShotBtn;
+        //[SerializeField] Button skillShot1Btn;
 
-        //m_PlayerWeaponsManager.onAddedWeapon += AddWeapon;
-        //m_PlayerWeaponsManager.onRemovedWeapon += RemoveWeapon;
-        //m_PlayerWeaponsManager.onSwitchedToWeapon += ChangeWeapon;
+        public delegate void BaseShotToggleEventHandler();
+        public static event BaseShotToggleEventHandler BaseShotToggleEvent;
+
+        //PlayerWeaponsManager m_PlayerWeaponsManager;
+        //List<AmmoCounter> m_AmmoCounters = new List<AmmoCounter>();
+
+        private void Start()
+        {
+            Display();
+        }
+        public void Display()
+        {
+            for (int i = 0; i < UserProfile.Instance.skillData.dataArray.Length; i++)
+            {
+                if (i >= spellCtrlList.Count)
+                {
+                    SpellCtrl tem = Instantiate<SpellCtrl>(spellCtrlPrefab, transform);
+                    spellCtrlList.Add(tem);
+                }
+
+                spellCtrlList[i].Display(UserProfile.Instance.skillData.dataArray[i]);
+            }
+        }
+
+        private void OrdinaryShow()
+        {
+            BaseShotToggleEvent?.Invoke();
+        }
+
     }
-    //void OnMouseDown()
-    //{
-    //    Debug.Log("OnMouseDown");
-    //}
-
-    //public void OnPointerDown(PointerEventData data)
-    //{
-    //    Debug.Log("OnPointerDown");
-    //}
-    private void OrdinaryShow()
-    {
-        BaseShotToggleEvent?.Invoke();
-    }
-
-    //void AddWeapon(WeaponController newWeapon, int weaponIndex)
-    //{
-    //    //GameObject ammoCounterInstance = Instantiate(ammoCounterPrefab, ammosPanel);
-    //    //AmmoCounter newAmmoCounter = ammoCounterInstance.GetComponent<AmmoCounter>();
-    //    //DebugUtility.HandleErrorIfNullGetComponent<AmmoCounter, WeaponHUDManager>(newAmmoCounter, this, ammoCounterInstance.gameObject);
-
-    //    //newAmmoCounter.Initialize(newWeapon, weaponIndex);
-
-    //    //m_AmmoCounters.Add(newAmmoCounter);
-    //}
-
-    //void RemoveWeapon(WeaponController newWeapon, int weaponIndex)
-    //{
-    //    int foundCounterIndex = -1;
-    //    for (int i = 0; i < m_AmmoCounters.Count; i++)
-    //    {
-    //        if(m_AmmoCounters[i].weaponCounterIndex == weaponIndex)
-    //        {
-    //            foundCounterIndex = i;
-    //            Destroy(m_AmmoCounters[i].gameObject);
-    //        }
-    //    }
-
-    //    if(foundCounterIndex >= 0)
-    //    {
-    //        m_AmmoCounters.RemoveAt(foundCounterIndex);
-    //    }
-    //}
-
-    //void ChangeWeapon(WeaponController weapon)
-    //{
-    //    UnityEngine.UI.LayoutRebuilder.ForceRebuildLayoutImmediate(ammosPanel);
-    //}
 }

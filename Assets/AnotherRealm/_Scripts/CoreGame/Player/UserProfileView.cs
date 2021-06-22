@@ -22,7 +22,7 @@ namespace ARExplorer
         void Start()
         {
             profileBtn.onClick.AddListener(ShowUserDetail);
-            UpdateUserData();
+            ShowUserInfo();
         }
 
    	 	// Update is called once per frame
@@ -33,10 +33,10 @@ namespace ARExplorer
                 userProfileDetailViewScr.ShowUserDetail();
 
             }
-            UpdateUserData();
+            ShowUserInfo();
         }
 
-        void UpdateUserData()
+        public void ShowUserInfo()
         {
             levelTxt.text = UserProfile.Instance.userData.Level.ToString();
             expTxt.text = UserProfile.Instance.userData.CurrentEXP.ToString() + "/" + UserProfile.Instance.userData.NextLevelEXP.ToString();

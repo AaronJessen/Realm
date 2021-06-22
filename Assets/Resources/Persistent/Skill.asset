@@ -24,7 +24,7 @@ MonoBehaviour:
     mp: 0
     cd: 0
     upgradegem: 00000000050000000a00000014000000
-    skillvalue1: 010000000200000003000000
+    skillvalue1: 01000000020000000300000004000000
     skillvalue2: 010000000200000003000000
   - index: 1
     name: Frost
@@ -33,21 +33,21 @@ MonoBehaviour:
     - AD
     speed: 2
     range: 1
-    mp: 2
+    mp: 4
     cd: 2
     upgradegem: 0200000006000000100000001a000000
-    skillvalue1: 010000000200000003000000
-    skillvalue2: 010000000200000003000000
+    skillvalue1: 01000000020000000300000004000000
+    skillvalue2: 01000000020000000300000004000000
   - index: 2
     name: Life
     skilltype:
     - Heal
     speed: 0
     range: 1
-    mp: 2
+    mp: 5
     cd: 3
     upgradegem: 050000000b00000016000000
-    skillvalue1: 0100000002000000
+    skillvalue1: 010000000200000003000000
     skillvalue2: 0100000002000000
   - index: 3
     name: Earth
@@ -55,10 +55,10 @@ MonoBehaviour:
     - AD
     speed: 1
     range: 1
-    mp: 4
+    mp: 6
     cd: 3
     upgradegem: 080000000a000000140000001e000000
-    skillvalue1: 010000000200000003000000
+    skillvalue1: 01000000020000000300000004000000
     skillvalue2: 010000000200000003000000
   - index: 4
     name: Lightning
@@ -66,10 +66,10 @@ MonoBehaviour:
     - Shield
     speed: 0
     range: 3
-    mp: 3
+    mp: 7
     cd: 5
     upgradegem: 0a000000170000002b000000
-    skillvalue1: 0100000002000000
+    skillvalue1: 010000000200000003000000
     skillvalue2: 0100000002000000
   - index: 5
     name: Shadow
@@ -77,8 +77,8 @@ MonoBehaviour:
     - AOE
     speed: 1
     range: 3
-    mp: 5
+    mp: 8
     cd: 5
     upgradegem: 050000000a0000001e000000
-    skillvalue1: 0100000002000000
+    skillvalue1: 010000000200000003000000
     skillvalue2: 0100000002000000

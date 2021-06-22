@@ -14,41 +14,67 @@ namespace ARExplorer
         [SerializeField] Text mpTxt;
         [SerializeField] Text upgradeGemTxt;
         [SerializeField] Text gemPctTxt;
+        [SerializeField] Text levelTxt;
+
+        [SerializeField] GameObject goldIndiObject;
 
         [SerializeField] Button upgradeSkillBtn;
+        [SerializeField] Button testAddSkillBtn;
         [SerializeField] SkillPropertyView skillPropertyViewPref;
         [SerializeField] List<SkillPropertyView> skillTypePropertyViewList = new List<SkillPropertyView>();
         [SerializeField] List<SkillPropertyView> skillBasicPropertyViewList = new List<SkillPropertyView>();
         [SerializeField] RectTransform gridLayoutRT;
+
+        SkillData m_skillData;
+        Color greyColor = new Color(0.5f, 0.5f, 0.5f);
         // Start is called before the first frame update
-        void Start()
+        private void Start()
         {
-            
+            upgradeSkillBtn.onClick.AddListener(UpdateSkill);
+            testAddSkillBtn.onClick.AddListener(TestAddGem);
+        }
+
+        void TestAddGem()
+        {
+            int nextSkillGem = UserProfile.Instance.userData.GetSkillGem(m_skillData.Name) + 1;
+            UserProfile.Instance.userData.SetSkillGem(m_skillData.Name, nextSkillGem);
+            DisplaySkillItem(m_skillData);
+            //Debug.Log("WinResult UserProfile " + userData.Curre
+        }
+
+        void UpdateSkill()
+        {
+            if (UserProfile.Instance.userData.Gold > 50)
+            {
+                int curGem = UserProfile.Instance.userData.GetSkillGem(m_skillData.Name);
+                int curSkillLevel = UserProfile.Instance.userData.GetSkillLevel(m_skillData.Name);
+
+                UserProfile.Instance.userData.SetSkillGem(m_skillData.Name, curGem - m_skillData.Upgradegem[curSkillLevel]);
+                UserProfile.Instance.userData.SetSkillLevel(m_skillData.Name, curSkillLevel + 1);
+                DisplaySkillItem(m_skillData);
+                UserProfile.Instance.userData.Gold -= 50;
+            }
+
         }
 
    	 	// Update is called once per frame
 		public void DisplaySkillItem(SkillData skillData)
 		{
+            m_skillData = skillData;
             InitSkillItem();
-            sourceImg.sprite = Resources.Load<Sprite>(PathProvider.skillTexturePath + skillData.Name);
-
-            Debug.Log(PathProvider.skillTexturePath + skillData.Name);
+            sourceImg.sprite = Resources.Load<Sprite>(PathProvider.rewardTexturePath + skillData.Name);
             sourceImg.SetNativeSize();
             sourceImg.GetComponent<RectTransform>().sizeDelta = new Vector2(150, 150);
             nameTxt.text = skillData.Name;
             mpTxt.text = skillData.MP.ToString();
+
             int curSkillLevel = UserProfile.Instance.userData.GetSkillLevel(skillData.Name);
 
-
-            float gemPct = (float)UserProfile.Instance.userData.GetSkillGem(skillData.Name) / (float)skillData.Upgradegem[curSkillLevel];
-
-           // Debug.Log();
-            gemPctTxt.text = UserProfile.Instance.userData.GetSkillGem(skillData.Name) + "/" + skillData.Upgradegem[curSkillLevel].ToString();
-            gemImg.fillAmount = gemPct;
+            Debug.Log("DisplaySkillItem " + curSkillLevel);
 
             MatchSkill(skillData.Skilltype[0], skillData.Skillvalue1[0]);
 
-            MatchLevelUpBtn(skillData.Upgradegem[curSkillLevel], skillData.Name);
+            MatchLevelUI(curSkillLevel, skillData.Name);
 
             if (skillData.Skilltype.Length == 2)
             {
@@ -87,20 +113,62 @@ namespace ARExplorer
 
         }
 
-        void MatchLevelUpBtn(int requireValue, string name)
+        void MatchLevelUI(int curSkillLevel, string name)
         {
-            if (UserProfile.Instance.userData.GetSkillGem(name) >= requireValue)
+
+            bool isMaxLevel = curSkillLevel >= m_skillData.Upgradegem.Length;
+            if (isMaxLevel)
             {
-                upgradeGemTxt.text = "Level Up";
-                upgradeSkillBtn.interactable = true;
-            }
-            else 
-            {
-                upgradeGemTxt.text = "Level Up";
                 upgradeSkillBtn.interactable = false;
-                // skillTypePropertyViewList[1].ShowSkillProperty("Shield", value);
+
+                levelTxt.gameObject.SetActive(true);//
+                levelTxt.text = "Level " + curSkillLevel.ToString();
+                upgradeGemTxt.text = "Max Level";
+                sourceImg.color = greyColor;
+                goldIndiObject.gameObject.SetActive(false);
+                sourceImg.color = Color.white;
+
+                gemPctTxt.text = UserProfile.Instance.userData.GetSkillGem(m_skillData.Name) + "/" + m_skillData.Upgradegem[m_skillData.Upgradegem.Length - 1].ToString();
+                gemImg.fillAmount = 1f;
             }
- 
+            else
+            {
+                int requireValue = m_skillData.Upgradegem[curSkillLevel];
+                Debug.Log("MatchLevelUI " + name + " : " + isMaxLevel);
+                if (UserProfile.Instance.userData.GetSkillGem(name) >= requireValue && UserProfile.Instance.userData.Gold > 50)
+                {
+                    upgradeSkillBtn.interactable = true;
+                }
+                else
+                {
+                    upgradeSkillBtn.interactable = false;
+                    // skillTypePropertyViewList[1].ShowSkillProperty("Shield", value);
+                }
+                goldIndiObject.gameObject.SetActive(true);
+
+                if (curSkillLevel == 0)
+                {
+                    levelTxt.gameObject.SetActive(false);// = "Level " + curSkillLevel.ToString();
+
+                    upgradeGemTxt.text = "Unlock Skill";
+                    sourceImg.color = greyColor;
+                }
+                else
+                {
+                    levelTxt.gameObject.SetActive(true);//
+                    levelTxt.text = "Level " + curSkillLevel.ToString();
+                    sourceImg.color = Color.white;
+                    upgradeGemTxt.text = "Level Up";
+                }
+
+                float gemPct = (float)UserProfile.Instance.userData.GetSkillGem(m_skillData.Name) / (float)m_skillData.Upgradegem[curSkillLevel];
+                gemPctTxt.text = UserProfile.Instance.userData.GetSkillGem(m_skillData.Name) + "/" + m_skillData.Upgradegem[curSkillLevel].ToString();
+                gemImg.fillAmount = gemPct;
+            }
+
+
+
+
 
         }
 

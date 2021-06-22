@@ -20,14 +20,14 @@ namespace ARExplorer
    	 	{
    	  	   
    	 	}
-        private void OnTriggerEnter(Collider other)
-        {
-            if (other.gameObject.GetComponentInParent<MonsterBase>())
-            {
-                other.gameObject.GetComponentInParent<MonsterBase>().EnterCrystleZone();
-                HitCrystalEvent?.Invoke(1f, other.gameObject);
-            }
-        }
+        //private void OnTriggerEnter(Collider other)
+        //{
+        //    if (other.gameObject.GetComponentInParent<MonsterBase>())
+        //    {
+        //        other.gameObject.GetComponentInParent<MonsterBase>().EnterCrystleZone();
+        //        HitCrystalEvent?.Invoke(1f, other.gameObject);
+        //    }
+        //}
         //void OnCollisionEnter(Collision collision)
         //{
 
