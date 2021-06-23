@@ -21,123 +21,157 @@ MonoBehaviour:
     description: 1 Time Explore
     reward: 010000000200000003000000
     rewardvalue: 020000000300000005000000
+    monsterindex: 0
+    monsternumber: 1
   - chpaterindex: 0
     episodeindex: 1
     name: Discover World 2
     description: 2 Time Explore
     reward: 0100000002000000
     rewardvalue: 0100000002000000
+    monsterindex: 1
+    monsternumber: 1
   - chpaterindex: 0
     episodeindex: 2
     name: Discover World 3
     description: 3 Time Explore
     reward: 010000000200000003000000
     rewardvalue: 010000000200000003000000
+    monsterindex: 2
+    monsternumber: 1
   - chpaterindex: 0
     episodeindex: 3
     name: Discover World 4
     description: 4 Time Explore
     reward: 0100000003000000
     rewardvalue: 0100000004000000
+    monsterindex: 3
+    monsternumber: 1
   - chpaterindex: 0
     episodeindex: 4
     name: Discover World 5
     description: 5 Time Explore
     reward: 0100000002000000
     rewardvalue: 0400000005000000
+    monsterindex: 4
+    monsternumber: 1
   - chpaterindex: 0
     episodeindex: 5
     name: Discover World 6
     description: 6 Time Explore
     reward: 0200000003000000
     rewardvalue: 0100000006000000
+    monsterindex: 5
+    monsternumber: 1
   - chpaterindex: 0
     episodeindex: 6
     name: Discover World 7
     description: 7 Time Explore
     reward: 0100000002000000
     rewardvalue: 0100000007000000
+    monsterindex: 6
+    monsternumber: 1
   - chpaterindex: 0
     episodeindex: 7
     name: Discover World 8
     description: 8 Time Explore
     reward: 0100000002000000
     rewardvalue: 0100000008000000
+    monsterindex: 7
+    monsternumber: 1
   - chpaterindex: 0
     episodeindex: 8
     name: Discover World 9
     description: 9 Time Explore
     reward: 0100000002000000
     rewardvalue: 0100000009000000
+    monsterindex: 8
+    monsternumber: 1
   - chpaterindex: 0
     episodeindex: 9
     name: Discover World 10
     description: 10 Time Explore
     reward: 0100000002000000
     rewardvalue: 010000000a000000
+    monsterindex: 9
+    monsternumber: 1
   - chpaterindex: 1
     episodeindex: 10
     name: Discover World 11
     description: 11 Time Explore
     reward: 010000000200000003000000
     rewardvalue: 040000000500000002000000
+    monsterindex: 10
+    monsternumber: 1
   - chpaterindex: 1
     episodeindex: 11
     name: Discover World 12
     description: 12 Time Explore
     reward: 0100000002000000
     rewardvalue: 0100000007000000
+    monsterindex: 11
+    monsternumber: 1
   - chpaterindex: 1
     episodeindex: 12
     name: Discover World 13
     description: 13 Time Explore
     reward: 0100000002000000
     rewardvalue: 0100000008000000
+    monsterindex: 12
+    monsternumber: 1
   - chpaterindex: 1
     episodeindex: 13
     name: Discover World 14
     description: 14 Time Explore
     reward: 0100000002000000
     rewardvalue: 0100000009000000
+    monsterindex: 13
+    monsternumber: 1
   - chpaterindex: 1
     episodeindex: 14
     name: Discover World 15
     description: 15 Time Explore
     reward: 0100000002000000
     rewardvalue: 010000000a000000
+    monsterindex: 14
+    monsternumber: 1
   - chpaterindex: 1
     episodeindex: 15
     name: Discover World 16
     description: 16 Time Explore
     reward: 0100000002000000
     rewardvalue: 010000000b000000
+    monsterindex: 15
+    monsternumber: 1
   - chpaterindex: 1
     episodeindex: 16
     name: Discover World 17
     description: 17 Time Explore
     reward: 0100000002000000
     rewardvalue: 010000000c000000
+    monsterindex: 16
+    monsternumber: 1
   - chpaterindex: 1
     episodeindex: 17
     name: Discover World 18
     description: 18 Time Explore
     reward: 0100000002000000
     rewardvalue: 010000000d000000
+    monsterindex: 17
+    monsternumber: 1
   - chpaterindex: 1
     episodeindex: 18
     name: Discover World 19
     description: 19 Time Explore
     reward: 0100000002000000
     rewardvalue: 010000000e000000
+    monsterindex: 18
+    monsternumber: 1
   - chpaterindex: 1
     episodeindex: 19
     name: Discover World 20
     description: 20 Time Explore
     reward: 0100000002000000
     rewardvalue: 010000000f000000
-  - chpaterindex: 0
-    episodeindex: 0
-    name: 
-    description: 
-    reward: 
-    rewardvalue: 
+    monsterindex: 19
+    monsternumber: 1

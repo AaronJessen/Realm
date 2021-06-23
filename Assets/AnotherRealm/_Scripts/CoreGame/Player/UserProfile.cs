@@ -10,6 +10,8 @@ namespace ARExplorer
         public Skill skillData;// = new SkillData();
         public UserConfig userConfigData;                           // Start is called before the first frame update
         public Chapter allChapter;
+        public Monster monsterData;
+        public EnemySkill enemySkillData;
 
         override public void Awake()
         {
@@ -20,7 +22,10 @@ namespace ARExplorer
 
             allChapter = Resources.Load<Chapter>("Persistent/Chapter");
 
+            monsterData = Resources.Load<Monster>("Persistent/Monster");
+            enemySkillData = Resources.Load<EnemySkill>("Persistent/EnemySkill");
             Debug.Log("skillData " + skillData.dataArray.Length);
+
             if (!PlayerPrefs.HasKey("SkillLevelArcane"))
             {
                 userData.SetSkillLevel("Arcane", 1);
@@ -61,5 +66,14 @@ namespace ARExplorer
 		{
             
 		}
+
+
+        public GameObject GetCurMonster()
+        {
+            int monsterIndex = UserProfile.Instance.allChapter.dataArray[MapPanelView.curLevel].Monsterindex;
+            string path = "Monsters/" + UserProfile.Instance.monsterData.dataArray[monsterIndex].Name;
+            return Resources.Load<GameObject>(path);
+
+        }
 	}
 }

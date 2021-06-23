@@ -32,4 +32,12 @@ public class ChapterData
   int[] rewardvalue = new int[0];
   public int[] Rewardvalue { get {return rewardvalue; } set { this.rewardvalue = value;} }
   
+  [SerializeField]
+  int monsterindex;
+  public int Monsterindex { get {return monsterindex; } set { this.monsterindex = value;} }
+  
+  [SerializeField]
+  int monsternumber;
+  public int Monsternumber { get {return monsternumber; } set { this.monsternumber = value;} }
+  
 }

@@ -57,10 +57,10 @@ namespace ARExplorer
         public void LoadLevel(int level)
         {
             string path = "Levels/Level" + level.ToString();
-            levelBuilder = Resources.Load<LevelBuilder>(path);
-            LoadLevelEvent.Invoke(levelBuilder);
+            //levelBuilder = Resources.Load<LevelBuilder>(path);
+            //LoadLevelEvent.Invoke(levelBuilder);
 
-            blackHoleCtrlScr.InitFactory(levelBuilder.EnemySpawnList.Count);
+            //blackHoleCtrlScr.InitFactory(levelBuilder.EnemySpawnList.Count);
             //monsterCount.Clear();
 
             for(int i = 0; i < monsterBaseList.Count; i++)
@@ -74,28 +74,33 @@ namespace ARExplorer
             }
 
             monsterBaseList.Clear();
-            remainMonsterCount = 0;
-            for (int i = 0; i < levelBuilder.EnemySpawnList.Count; i++)
-            {
-                monsterBaseList.Add(new List<MonsterBase>());
-                //monsterCount.Add(new List<int>());
-                for (int j = 0; j < levelBuilder.EnemySpawnList[i].MonsterList.Count; j++)
-                {
-                    //monsterCount[i].Add(0);
-                    for (int k = 0; k < levelBuilder.EnemySpawnList[i].MonsterList[j].number; k++)
-                    {
-                       // spawnOffest = new Vector3(Random.Range(-20, 20), 0, 0);
-                        MonsterBase tem = Instantiate<MonsterBase>(levelBuilder.EnemySpawnList[i].MonsterList[j].Monster, blackHoleCtrlScr.transform);
-                        tem.Create(levelBuilder.EnemySpawnList[i].MonsterList[j].speed);
-                        monsterBaseList[i].Add(tem);
-                    }
+            //int monsterIndex = UserProfile.Instance.allChapter.dataArray[0].Monsterindex
+            //MonsterBase tem = Instantiate<MonsterBase>(, blackHoleCtrlScr.transform);
+            GameObject tem = UserProfile.Instance.GetCurMonster();
+            Instantiate<GameObject>(tem, blackHoleCtrlScr.transform);
+            remainMonsterCount = 1;
 
-                }
-                remainMonsterCount += monsterBaseList[i].Count;
-            }
+            //for (int i = 0; i < levelBuilder.EnemySpawnList.Count; i++)
+            //{
+            //    monsterBaseList.Add(new List<MonsterBase>());
+            //    //monsterCount.Add(new List<int>());
+            //    for (int j = 0; j < levelBuilder.EnemySpawnList[i].MonsterList.Count; j++)
+            //    {
+            //        //monsterCount[i].Add(0);
+            //        for (int k = 0; k < levelBuilder.EnemySpawnList[i].MonsterList[j].number; k++)
+            //        {
+            //           // spawnOffest = new Vector3(Random.Range(-20, 20), 0, 0);
+            //            MonsterBase tem = Instantiate<MonsterBase>(levelBuilder.EnemySpawnList[i].MonsterList[j].Monster, blackHoleCtrlScr.transform);
+            //            tem.Create(levelBuilder.EnemySpawnList[i].MonsterList[j].speed);
+            //            monsterBaseList[i].Add(tem);
+            //        }
+
+            //    }
+            //    remainMonsterCount += monsterBaseList[i].Count;
+            //}
             
-            Debug.Log("remainMonsterCount " + remainMonsterCount);
-            StartCoroutine(SpawRelease());
+            //Debug.Log("remainMonsterCount " + remainMonsterCount);
+            //StartCoroutine(SpawRelease());
         }
 
         private IEnumerator SpawRelease()
